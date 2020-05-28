@@ -15,7 +15,15 @@ namespace ARMuseum.ChooseMuseumScreen
 
         private void Awake()
         {
-            _dataContainer.ScreenManager = new ScreenStateManager(_screensBindings);
+            if (_dataContainer.ScreenManager == null)
+            {
+                _dataContainer.ScreenManager = new ScreenStateManager(_screensBindings);
+            }
+            else
+            {
+                _dataContainer.ScreenManager.ChangeScreenBindings(_screensBindings);
+            }
+            
             _dataContainer.ScreenManager.LoadCurrentScreenState();
         }
     }

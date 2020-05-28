@@ -22,7 +22,7 @@ namespace ARMuseum.ARImageTracking
                 var newARObject = Instantiate(arObject, Vector3.zero, Quaternion.identity);
                 newARObject.name = arObject.name;
                 _arObjects.Add(arObject.name, newARObject);
-            } 
+            }
         }
 
         private void OnEnable()

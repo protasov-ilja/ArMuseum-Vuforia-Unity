@@ -17,7 +17,7 @@ namespace ARMuseum.Scriptables
         
         [SerializeField] private string _id;
         [SerializeField] private string _exhibitName;
-        [SerializeField] private Image[] _images;
+        [SerializeField] private Sprite[] _images;
         [SerializeField] private string _description;
         [SerializeField] private HallDataSO _hall;
         [SerializeField] private AudioClip _audioGuid;
@@ -27,7 +27,7 @@ namespace ARMuseum.Scriptables
 
         public string Id => _id;
         public string ExhibitName => _exhibitName;
-        public Image[] Images => _images;
+        public Sprite[] Images => _images;
         public string Description => _description;
         public HallDataSO Hall => _hall;
         public AudioClip AudioGuid => _audioGuid;

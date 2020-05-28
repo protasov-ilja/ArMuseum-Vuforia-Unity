@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<QCARInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="QCAR_Dataset_config.xsd">
+  <TargetSet version="5.0" toolVersion="4.2.0">
+    <ObjectTarget bbox="0.0000 0.0000 0.0000 0.1425 0.0950 0.0950" captureAppVersion="6.5.0" lastSaved="2020-05-28T14:39:21Z" name="tankLego" targetId="e0ce31dcd475483fb562d65b39292e8b" version="2.0" />
+    <ObjectTarget bbox="0.0000 0.0000 0.0000 0.1425 0.0950 0.0950" captureAppVersion="6.5.0" lastSaved="2020-05-28T14:44:26Z" name="is3Tank" targetId="5d0f99ef98854c27b11b12fc3a7c3af2" version="2.0" />
+    <ObjectTarget bbox="0.0000 0.0000 0.0000 0.1425 0.0950 0.0950" captureAppVersion="6.5.0" lastSaved="2020-05-28T14:33:30Z" name="Sculpture" targetId="51e04e4c1acf4b45afeb8bcbc058b560" version="2.0" />
+  </TargetSet>
+</QCARInfo>

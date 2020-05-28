@@ -31,17 +31,14 @@ namespace ARMuseum.ExhibitTypeScreen
         {
             _globalData = _dataContainer.GlobalData;
             _screenManager = _dataContainer.ScreenManager;
-        }
-
-        private void OnEnable()
-        {
+            
             _paintButton.onClick.AddListener(OnSelectPaint);
             _sculptureButton.onClick.AddListener(OnSelectSculpture);
             _backToMuseumsButton.onClick.AddListener(OnBackButtonClicked);
             _helpScreenButton.onClick.AddListener(OnHelpClicked);
         }
 
-        private void OnDisable()
+        private void OnDestroy()
         {
             _paintButton.onClick.RemoveListener(OnSelectPaint);
             _sculptureButton.onClick.RemoveListener(OnSelectSculpture);

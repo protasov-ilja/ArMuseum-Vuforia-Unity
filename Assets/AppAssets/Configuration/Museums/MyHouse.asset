@@ -18,4 +18,10 @@ MonoBehaviour:
   _city: {fileID: 11400000, guid: 087d9bd3f8753404b875396bfcadf035, type: 2}
   _image: {fileID: 21300000, guid: 6fc6b244a372bf841a346c9bec554293, type: 3}
   _navigationMapData: {fileID: 0}
-  _exhibits: []
+  _exhibits:
+  - {fileID: 11400000, guid: 4bb9346824b45ae4db3bcc85282a92a7, type: 2}
+  - {fileID: 11400000, guid: 01563bb2fa37a66438d3ad06c53b24b7, type: 2}
+  - {fileID: 11400000, guid: a297be80e998fa34596baa16d65e93f5, type: 2}
+  - {fileID: 11400000, guid: 91e4f04058ab10c488200baa831922d7, type: 2}
+  - {fileID: 11400000, guid: 96ea758ac280c834a9b0b501e707a7c0, type: 2}
+  - {fileID: 11400000, guid: 80da4c03cb5d3a64d82dc77d757b044a, type: 2}

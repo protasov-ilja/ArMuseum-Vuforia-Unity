@@ -6,6 +6,7 @@
         Scan,
         Search,
         ExhibitType,
-        Museums
+        Museums,
+        ExhibitInfo
     }
 }

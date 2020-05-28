@@ -15,5 +15,8 @@ namespace ARMuseum.Scriptables
         [SerializeField] private string _id;
         [SerializeField] private string _hallName;
         [SerializeField] private string _description;
+        
+        public string HallName => _hallName;
+        public string Description => _description;
     }
 }

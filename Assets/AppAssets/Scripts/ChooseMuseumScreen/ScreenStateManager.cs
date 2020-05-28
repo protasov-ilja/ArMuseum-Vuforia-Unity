@@ -13,7 +13,7 @@ namespace ARMuseum.ChooseMuseumScreen
         
         public ScreenState CurrentScreenState { get; private set; }
 
-        private readonly Dictionary<ScreenState, IScreenManager> _screenBindings;
+        private Dictionary<ScreenState, IScreenManager> _screenBindings;
 
         public Action<ScreenState> OnScreenStateChanged;
 
@@ -31,8 +31,21 @@ namespace ARMuseum.ChooseMuseumScreen
             OnScreenStateChanged?.Invoke(ScreenState.Museums);
         }
         
-        public void Subscribed(IStateChangingListener data)
+        public void ChangeScreenBindings(Dictionary<ScreenState, IScreenManager> screenBindings)
         {
+            _screenBindings = screenBindings;
+        }
+
+        public void AddScreenData(ScreenState state, IScreenManager screen)
+        {
+            if (_screenBindings.ContainsKey(state))
+            {
+                _screenBindings[state] = screen;
+            }
+            else
+            {
+                _screenBindings.Add(state, screen);
+            }
         }
         
         public void SetScreenState(ScreenState newState)

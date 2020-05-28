@@ -10,22 +10,14 @@ namespace ARMuseum.ARImageTracking
         protected TrackableBehaviour.Status m_PreviousStatus;
         protected TrackableBehaviour.Status m_NewStatus;
 
-        public Action<string> OnExhibitRecognised;
+        public Action<string, TrackableExhibitEventHandler> OnExhibitRecognised;
         public Action<string> OnExhibitLost;
-
-        [SerializeField] private ImageTargetBehaviour _targetBehaviour;
-        [SerializeField] private TurnOffBehaviour _offBehaviour;
+        
         [SerializeField] private GameObject _3DModel;
-
-        public void Initialize()
-        {
-            _targetBehaviour.enabled = true;
-            _offBehaviour.enabled = true;
-            gameObject.SetActive(true);
-        }
-
+        [SerializeField] private string _connectedExhibitId;
+        
         public bool Has3DModel => _3DModel != null;
-        public string ExhibitId { get; set; }
+        public string ConnectedExhibitId => _connectedExhibitId;
 
         protected virtual void Start()
         {
@@ -38,6 +30,11 @@ namespace ARMuseum.ARImageTracking
         {
             if (mTrackableBehaviour)
                 mTrackableBehaviour.UnregisterTrackableEventHandler(this);
+        }
+        
+        public void Initialize()
+        {
+            gameObject.SetActive(true);
         }
 
         public void Activate3DModel()
@@ -89,22 +86,24 @@ namespace ARMuseum.ARImageTracking
         {
             if (mTrackableBehaviour)
             {
-                var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
-                var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
-                var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
-
-                // Enable rendering:
-                foreach (var component in rendererComponents)
-                    component.enabled = true;
-
-                // Enable colliders:
-                foreach (var component in colliderComponents)
-                    component.enabled = true;
-
-                // Enable canvas':
-                foreach (var component in canvasComponents)
-                    component.enabled = true;
+                // var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
+                // var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
+                // var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
+                //
+                // // Enable rendering:
+                // foreach (var component in rendererComponents)
+                //     component.enabled = true;
+                //
+                // // Enable colliders:
+                // foreach (var component in colliderComponents)
+                //     component.enabled = true;
+                //
+                // // Enable canvas':
+                // foreach (var component in canvasComponents)
+                //     component.enabled = true;
             }
+
+            OnExhibitRecognised?.Invoke(ConnectedExhibitId, this);
         }
 
 
@@ -112,22 +111,25 @@ namespace ARMuseum.ARImageTracking
         {
             if (mTrackableBehaviour)
             {
-                var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
-                var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
-                var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
-
-                // Disable rendering:
-                foreach (var component in rendererComponents)
-                    component.enabled = false;
-
-                // Disable colliders:
-                foreach (var component in colliderComponents)
-                    component.enabled = false;
-
-                // Disable canvas':
-                foreach (var component in canvasComponents)
-                    component.enabled = false;
+                Deactivate3DModel();
+                // var rendererComponents = mTrackableBehaviour.GetComponentsInChildren<Renderer>(true);
+                // var colliderComponents = mTrackableBehaviour.GetComponentsInChildren<Collider>(true);
+                // var canvasComponents = mTrackableBehaviour.GetComponentsInChildren<Canvas>(true);
+                //
+                // // Disable rendering:
+                // foreach (var component in rendererComponents)
+                //     component.enabled = false;
+                //
+                // // Disable colliders:
+                // foreach (var component in colliderComponents)
+                //     component.enabled = false;
+                //
+                // // Disable canvas':
+                // foreach (var component in canvasComponents)
+                //     component.enabled = false;
             }
+            
+            OnExhibitLost?.Invoke(ConnectedExhibitId);
         }
     }
 }

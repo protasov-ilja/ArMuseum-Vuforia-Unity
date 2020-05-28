@@ -14,6 +14,7 @@ namespace ARMuseum.Scriptables
         public ScreenStateManager ScreenManager { get; set; }
 
         public MuseumDataSO SelectedMuseumData { get; set; }
+        public ExhibitDataSO SelectedExhibitData { get; set; }
         public ExhibitType SelectedExhibitType { get; set; }
     }
 }

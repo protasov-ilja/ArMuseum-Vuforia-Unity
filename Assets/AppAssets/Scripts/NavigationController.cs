@@ -4,6 +4,7 @@ using ARMuseum.RaycastThrowImageTesting;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
 
 namespace ARMuseum
 {
@@ -14,10 +15,10 @@ namespace ARMuseum
         [Header("AppComponents")]
         public GameObject trigger; // trigger to spawn and despawn AR arrows
         public NavigationDestination[] destinations; // list of destination positions
-        public GameObject person; // person indicator
+        [FormerlySerializedAs("person")] public GameObject _userTarget; // person indicator
         
         // used to hit rays throw minimap to unity world
-        public RenderTexture2DRayCaster _textureRayCaster;
+        [FormerlySerializedAs("_textureRayCaster")] public RenderTexture2DRayCaster _textureMapRayCaster;
         
         [SerializeField]
         private LineRenderer _line; // line renderer to display path
@@ -25,36 +26,37 @@ namespace ARMuseum
         [SerializeField] // used to collect spawned triggers
         private TriggerCollector _triggersCollector;
         
-        private NavigationDestination _target; // current chosen destination
+        private NavigationDestination _navTarget; // current chosen destination
         private NavMeshPath _path; // current calculated path
         private bool _destinationSet; // bool to say if a destination is set
 
         private GameObject _destination;
-        private GameObject _DestinationAnchor;
+        private GameObject _destinationAnchor;
         
         //create initial path, get linerenderer.
         private void Start()
         {
+            // create path
             _path = new NavMeshPath();
-            _destinationSet = false;
+            _destinationSet = false; // reset destination
         }
 
         private void OnEnable()
         {
-            _textureRayCaster.OnRayCastHit += SetDestination;
+            _textureMapRayCaster.OnRayCastHit += SetDestination;
         }
 
         private void OnDisable()
         {
-            _textureRayCaster.OnRayCastHit -= SetDestination;
+            _textureMapRayCaster.OnRayCastHit -= SetDestination;
         }
 
         private void Update()
         {
             //if a target is set, calculate and update path
-            if (_target != null)
+            if (_navTarget != null)
             {
-                var isFound = NavMesh.CalculatePath(person.transform.position, _target.transform.position, 
+                var isFound = NavMesh.CalculatePath(_userTarget.transform.position, _navTarget.transform.position, 
                     NavMesh.AllAreas, _path);
 
                 //lost path due to standing above obstacle (drift)
@@ -73,12 +75,11 @@ namespace ARMuseum
         //set current destination and create a trigger for showing AR arrows
         public void SetDestination(string destinationName)
         {
-            whereText.text = destinationName;
             _triggersCollector.ClearList();
             
-            if (_target != null)
+            if (_navTarget != null)
             {
-                _target.ActivateDestinationPointer(false);
+                _navTarget.ActivateDestinationPointer(false);
             }
 
             var targetTransform = destinations.Where(d => d.gameObject.name == destinationName).ToList();
@@ -89,10 +90,10 @@ namespace ARMuseum
                 Destroy(prevTrigger);
             }
             
-            _target = targetTransform[0];
-            _target.ActivateDestinationPointer(true);
+            _navTarget = targetTransform[0];
+            _navTarget.ActivateDestinationPointer(true);
 
-            var obj = Instantiate(trigger, person.transform.position, person.transform.rotation);
+            var obj = Instantiate(trigger, _userTarget.transform.position, _userTarget.transform.rotation);
             Debug.Log($"NavigationControllerFound! { destinationName } position: { obj.transform.position }");
             
             _triggersCollector.AddTrigger(obj);
