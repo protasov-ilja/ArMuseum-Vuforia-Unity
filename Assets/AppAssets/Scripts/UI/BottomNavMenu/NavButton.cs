@@ -11,7 +11,9 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
         [SerializeField] private Image _buttonIcon;
         [SerializeField] private TMP_Text _buttonText;
         [SerializeField] private Image _buttonBackground;
-        
+
+        [SerializeField] private Color _activeColor;
+        [SerializeField] private Color _inactiveColor;
         [SerializeField] private Button _button;
         [SerializeField] private ScreenState _screenState;
 
