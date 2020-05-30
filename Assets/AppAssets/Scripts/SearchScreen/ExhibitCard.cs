@@ -11,6 +11,7 @@ namespace ARMuseum.SearchScreen
         [SerializeField] private TMP_Text _exhibitNameText;
         [SerializeField] private TMP_Text _hallNameText;
         [SerializeField] private TMP_Text _shortDescription;
+        [SerializeField] private Image _exhibitImage;
 
         [SerializeField] private Button _button; 
         
@@ -35,7 +36,7 @@ namespace ARMuseum.SearchScreen
             _exhibitNameText.text = exhibitData.ExhibitName;
             _hallNameText.text = exhibitData.Hall.HallName;
             _shortDescription.text = exhibitData.Description;
-
+            _exhibitImage.sprite = exhibitData.Images[0];
             OnExhibitChosen += controller.ChooseExhibit;
         }
 

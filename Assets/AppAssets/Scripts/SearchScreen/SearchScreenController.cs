@@ -1,11 +1,14 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using AppAssets.Scripts.UI;
 using AppAssets.Scripts.UI.Enums;
 using ARMuseum.ChooseMuseumScreen;
 using ARMuseum.Scriptables;
+using FuzzySharp;
 using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 using Zenject;
 
 namespace ARMuseum.SearchScreen
@@ -18,31 +21,58 @@ namespace ARMuseum.SearchScreen
         [SerializeField] private Transform _contentTransform;
 
         [SerializeField] private TMP_InputField _inputField;
+        [SerializeField] private Button _confirmInputButton; 
         
         public bool IsActivated { get; private set; }
 
         private GlobalDataSO _globalData;
         private ScreenStateManager _screenManager;
         private List<ExhibitCard> _cards = new List<ExhibitCard>();
+        private List<string> _exhibitsNames = new List<string>();
 
+        private List<ExhibitCard> _activeCards = new List<ExhibitCard>();
+
+        private bool _fistRun = true;
+        
         private void Start()
         {
+            _confirmInputButton.onClick.AddListener(Search);
+            
             _globalData = _dataContainer.GlobalData;
-
-            foreach (var exhibitData in _globalData.SelectedMuseumData.Exhibits)
-            {
-                var card = Instantiate(_exhibitCardPrefab, _contentTransform);
-                card.Initialize(exhibitData, this);
-            }
+            _fistRun = false;
+            PopulateContent();
         }
 
         private void OnEnable()
         {
+            if (_fistRun) return;
+                
+            PopulateContent();
+        }
+
+        private void PopulateContent()
+        {
+            var exhibits = _globalData.SelectedMuseumData.Exhibits;
+            foreach (var exhibitData in exhibits)
+            {
+                var card = Instantiate(_exhibitCardPrefab, _contentTransform);
+                card.Initialize(exhibitData, this);
+                _exhibitsNames.Add(exhibitData.ExhibitName.ToLower());
+                _cards.Add(card);
+                _activeCards.Add(card);
+            }
+        }
+
+        private void OnDisable()
+        {
+            _exhibitsNames.Clear();
+            
             for (var i = _cards.Count - 1; i >= 0; --i)
             {
                 Destroy(_cards[i].gameObject);    
             }
             
+            _activeCards.Clear();
             _cards.Clear();
         }
 
@@ -62,6 +92,51 @@ namespace ARMuseum.SearchScreen
         {
             IsActivated = false;
             gameObject.SetActive(false);
+        }
+
+        private void ShowAllCards()
+        {
+            foreach (var card in _cards)
+            {
+                if (_activeCards.Contains(card)) continue;
+                
+                card.gameObject.SetActive(true);
+                _activeCards.Add(card);
+            }
+        }
+
+        private void Search()
+        {
+            if (_inputField.text == "")
+            {
+                ShowAllCards();
+                
+                return;
+            }
+            
+            DisableActiveCards();
+
+            string searchString = _inputField.text;
+            searchString = searchString.ToLower();
+            var result = Process.ExtractTop(searchString, _exhibitsNames).ToList();
+            foreach (var foundString in result)
+            {
+                if (foundString.Score <= 0) continue;
+                
+                var exhibitCard = _cards.First(c => c.ExhibitName.ToLower() == foundString.Value);
+                exhibitCard.gameObject.SetActive(true);
+                _activeCards.Add(exhibitCard);
+            }
+        }
+
+        private void DisableActiveCards()
+        {
+            foreach (var activeCard in _activeCards)
+            {
+                activeCard.gameObject.SetActive(false);
+            }
+            
+            _activeCards.Clear();
         }
     }
 }

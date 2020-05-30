@@ -14,7 +14,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: de439de6-17fb-4ee5-adfe-1af4cc0cf04e
   _exhibitName: "\u041A\u043E\u0440\u043E\u0431\u043A\u0430"
-  _images: []
+  _images:
+  - {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
+  - {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
+  - {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
   _description: "\u0411\u043E\u043B\u044C\u0448\u0430\u044F \u043A\u0432\u0430\u0434\u0440\u0430\u0442\u043D\u0430\u044F
     \u043A\u043E\u0440\u043E\u0431\u043A\u0430"
   _hall: {fileID: 11400000, guid: 51e5ae440091dcd40acdab2fbb1977c9, type: 2}

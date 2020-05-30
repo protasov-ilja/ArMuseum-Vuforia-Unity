@@ -41,6 +41,11 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
                     navButton.ActivateButton(false);
                 }
             }
+
+            if (_screenManager == null)
+            {
+                _screenManager = _dataContainer.ScreenManager;
+            }
             
             _screenManager.SetScreenState(selectedState);
         }

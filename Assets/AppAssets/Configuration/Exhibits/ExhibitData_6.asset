@@ -14,7 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _id: f9095601-b2a4-4d48-a5da-de3a551c7e14
   _exhibitName: "\u0421\u043A\u0443\u043B\u044C\u043F\u0442\u0443\u0440\u0430"
-  _images: []
+  _images:
+  - {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
+  - {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
   _description: "\u0411\u0435\u043B\u0430\u044F \u0441\u043A\u0443\u043B\u044C\u043F\u0442\u0443\u0440\u0430"
   _hall: {fileID: 11400000, guid: a7e31464ff62de24dae7caf10fb77ce6, type: 2}
   _audioGuid: {fileID: 0}

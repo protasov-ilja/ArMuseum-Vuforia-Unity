@@ -782,6 +782,7 @@ GameObject:
   - component: {fileID: 1824400489314224353}
   - component: {fileID: 4907970843800928638}
   - component: {fileID: 5377087994449024252}
+  - component: {fileID: 2472355771124886636}
   m_Layer: 5
   m_Name: ExhibitCard
   m_TagString: Untagged
@@ -890,6 +891,23 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &2472355771124886636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6128025614707026696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ab2dd03e00447acba60cc6d8ad4ad72, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _exhibitNameText: {fileID: 3040604014441239482}
+  _hallNameText: {fileID: 6016879776668551129}
+  _shortDescription: {fileID: 3840486756518698622}
+  _exhibitImage: {fileID: 3687272084179315849}
+  _button: {fileID: 5377087994449024252}
 --- !u!1 &6807557069361870126
 GameObject:
   m_ObjectHideFlags: 0
