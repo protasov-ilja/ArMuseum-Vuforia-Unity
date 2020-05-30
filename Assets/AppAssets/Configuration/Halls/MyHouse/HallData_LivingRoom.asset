@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6e62974c88454fdf998c8c0288403eda, type: 3}
+  m_Name: HallData_LivingRoom
+  m_EditorClassIdentifier: 
+  _id: d8437109-b112-45f5-84e4-be25a1542fd8
+  _hallName: "\u0417\u0430\u043B"
+  _description: "\u0417\u0430\u043B \u0441\u0430\u043C\u0430\u044F \u0431\u043E\u043B\u044C\u0448\u0430\u044F
+    \u043A\u043E\u043C\u043D\u0430\u0442\u0430"
