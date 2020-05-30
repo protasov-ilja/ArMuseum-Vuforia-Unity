@@ -39,6 +39,7 @@ namespace ARMuseum.SearchScreen
             _confirmInputButton.onClick.AddListener(Search);
             
             _globalData = _dataContainer.GlobalData;
+            _screenManager = _dataContainer.ScreenManager;
             _fistRun = false;
             PopulateContent();
         }

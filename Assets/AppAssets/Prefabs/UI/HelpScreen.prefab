@@ -32,10 +32,10 @@ RectTransform:
   m_Father: {fileID: 3812424834704989818}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0.1, y: 61.3}
-  m_SizeDelta: {x: 916.37463, y: 1653.9692}
+  m_AnchorMin: {x: 0.043783944, y: 0.083958216}
+  m_AnchorMax: {x: 0.95641524, y: 0.9826576}
+  m_AnchoredPosition: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3812424834191810555
 CanvasRenderer:
@@ -67,12 +67,12 @@ MonoBehaviour:
   m_text: "1. Hello wolrd Lore Ipsine Ipsune Lore ABCDEF asdasdasdasd asd  asd? \nHello,
     sdsd sds sdsd sdsds.\nHello wolrd Lore Ipsine Ipsune \n2. Lore ABCDEF asdasdasdasd
     asd  asd? \nHello, sdsd sds sdsd sdsds.\nHello wolrd Lore Ipsine Ipsune \n3.
-    Lore ABCDEF asdasdasdasd asd  asd? \nHello, sdsd sds sdsd sdsds.\nHello wolrd
-    Lore Ipsine Ipsune Lore ABCDEF asdasdasdasd asd  asd? \nHello, sdsd sds sdsd
-    sdsds.\n4. Hello wolrd Lore Ipsine Ipsune Lore ABCDEF asdasdasdasd asd  asd?
-    \nHello, sdsd sds sdsd sdsds.\nHello wolrd Lore Ipsine Ipsune Lore ABCDEF asdasdasdasd
-    asd  asd? \nHello, sdsd sds sdsd sdsds\nHello wolrd Lore Ipsine Ipsune Lore ABCDEF
-    asdasdasdasd asd  asd? \nHello, sdsd sds sdsd sdsds"
+    Lore ABCDEF asdasdasdasd asd  asd? \nHello wolrd Lore Ipsine Ipsune Lore ABCDEF
+    asdasdasdasd asd  asd? \nHello, sdsd sds sdsd sdsds.\n4. Hello wolrd Lore Ipsine
+    Ipsune Lore ABCDEF asdasdasdasd asd  asd? \nHello, sdsd sds sdsd sdsds.\nHello
+    wolrd Lore Ipsine Ipsune Lore ABCDEF asdasdasdasd asd  asd? \nHello, sdsd sds
+    sdsd sdsds\nHello wolrd Lore Ipsine Ipsune Lore ABCDEF asdasdasdasd asd  asd?
+    \nHello, sdsd sds sdsd sdsds"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 99826f99f6ba88041b7413413d58bd50, type: 2}
   m_sharedMaterial: {fileID: 62582879075034784, guid: 99826f99f6ba88041b7413413d58bd50,
@@ -118,7 +118,7 @@ MonoBehaviour:
   m_enableWordWrapping: 1
   m_wordWrappingRatios: 0.4
   m_overflowMode: 0
-  m_firstOverflowCharacterIndex: 650
+  m_firstOverflowCharacterIndex: -1
   m_linkedTextComponent: {fileID: 0}
   m_isLinkedTextComponent: 0
   m_isTextTruncated: 0
@@ -142,12 +142,12 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 0, w: 0}
   m_textInfo:
     textComponent: {fileID: 3812424834191810554}
-    characterCount: 676
+    characterCount: 648
     spriteCount: 0
-    spaceCount: 124
-    wordCount: 109
+    spaceCount: 119
+    wordCount: 104
     linkCount: 0
-    lineCount: 25
+    lineCount: 24
     pageCount: 1
     materialCount: 1
   m_isUsingLegacyAnimationComponent: 0
@@ -217,7 +217,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3812424834502158599}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 058cba836c1846c3aa1c5fd2e28aea77, type: 3}
   m_Name: 
@@ -272,10 +272,10 @@ RectTransform:
   m_Father: {fileID: 3812424836020962324}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -1.8199463, y: 7.050049}
-  m_SizeDelta: {x: -75.898315, y: -79.5968}
+  m_AnchorMin: {x: 0.033452973, y: 0.024400234}
+  m_AnchorMax: {x: 0.9631767, y: 0.9829436}
+  m_AnchoredPosition: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 1.0000305, y: 1.0000305}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3812424834704989816
 CanvasRenderer:
@@ -348,10 +348,10 @@ RectTransform:
   m_Father: {fileID: 3812424834704989818}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -0.05, y: -836.49}
-  m_SizeDelta: {x: 466.4292, y: 104.846375}
+  m_AnchorMin: {x: 0.26768827, y: 0.017000835}
+  m_AnchorMax: {x: 0.7322121, y: 0.07397011}
+  m_AnchoredPosition: {x: 0.5, y: 0.5}
+  m_SizeDelta: {x: 1, y: 1.000061}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3812424835800357388
 CanvasRenderer:
@@ -692,7 +692,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &3812424836020962324
 RectTransform:
   m_ObjectHideFlags: 0

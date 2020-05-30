@@ -16,5 +16,11 @@ namespace ARMuseum.Scriptables
         public MuseumDataSO SelectedMuseumData { get; set; }
         public ExhibitDataSO SelectedExhibitData { get; set; }
         public ExhibitType SelectedExhibitType { get; set; }
+        
+        public void ClearCurrentData()
+        {
+            SelectedMuseumData = null;
+            SelectedExhibitData = null;
+        }
     }
 }
