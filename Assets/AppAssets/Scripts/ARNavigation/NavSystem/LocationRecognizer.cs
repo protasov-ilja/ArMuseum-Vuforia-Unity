@@ -1,21 +1,23 @@
-using TMPro;
+using System;
 using UnityEngine;
 
 namespace ARMuseum
 {
     public class LocationRecognizer : MonoBehaviour
     {
-        //public TextMeshProUGUI _currentDestinationText;
-
         private string _currentLocation;
+
+        public Action<string> OnEnterLocation;
+        public Action<string> OnExitLocation;
         
         private void OnTriggerEnter(Collider other)
         {
             // if it is a navTrigger then calculate angle and spawn a new AR arrow
             if (other.gameObject.TryGetComponent<NavigationDestination>(out var locationObject))
             {
-                _currentLocation = other.gameObject.name;
-                //_currentDestinationText.text = _currentLocation;
+                _currentLocation = locationObject.HallData.HallName;
+                
+                OnEnterLocation?.Invoke(_currentLocation);
 
                 Debug.Log($"current location: { _currentLocation }");
             }
@@ -26,11 +28,11 @@ namespace ARMuseum
             // if it is a navTrigger then calculate angle and spawn a new AR arrow
             if (other.gameObject.TryGetComponent<NavigationDestination>(out var locationObject))
             {
-                if (_currentLocation == other.gameObject.name)
+                if (_currentLocation == locationObject.HallData.HallName)
                 {
+                    OnExitLocation?.Invoke(_currentLocation);
                     _currentLocation = "";
-                    //_currentDestinationText.text = "";
-                    
+
                     Debug.Log($"current location changed");
                 }
             }

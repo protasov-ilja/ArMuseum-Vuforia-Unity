@@ -6,6 +6,7 @@ using ARMuseum.ChooseMuseumScreen;
 using ARMuseum.Scriptables;
 using TMPro;
 using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.UI;
 using Zenject;
 
@@ -24,7 +25,7 @@ namespace AppAssets.Scripts.ARNavigation
 
         [SerializeField] private TMP_Text _destinationNameText;
 
-        [SerializeField] private NavigationController _navigationSystem;
+        [FormerlySerializedAs("_navigationSystem")] [SerializeField] private ARNavigationSystem arNavigationSystem;
         
         private ScreenStateManager _screenManager;
         private GlobalDataSO _globalData;

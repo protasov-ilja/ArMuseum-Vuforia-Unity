@@ -1,17 +1,15 @@
-﻿using System;
-using System.Linq;
+﻿using System.Linq;
 using ARMuseum.RaycastThrowImageTesting;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 
 namespace ARMuseum
 {
-    public class NavigationController : MonoBehaviour
+    public class ARNavigationSystem : MonoBehaviour
     {
-        [Header("UI")] public TextMeshProUGUI whereText;
-        
+        [Header("UI")]
+
         [Header("AppComponents")]
         public GameObject trigger; // trigger to spawn and despawn AR arrows
         public NavigationDestination[] destinations; // list of destination positions
@@ -20,11 +18,8 @@ namespace ARMuseum
         // used to hit rays throw minimap to unity world
         public RenderTexture2DRayCaster _textureMapRayCaster;
         
-        [SerializeField]
-        private LineRenderer _line; // line renderer to display path
-
-        [SerializeField] // used to collect spawned triggers
-        private TriggerCollector _triggersCollector;
+        [SerializeField] private LineRenderer _line; // line renderer to display path
+        [SerializeField] private TriggerCollector _triggersCollector; // used to collect spawned triggers
         
         private NavigationDestination _navTarget; // current chosen destination
         private NavMeshPath _path; // current calculated path
@@ -33,7 +28,7 @@ namespace ARMuseum
         private GameObject _destination;
         private GameObject _destinationAnchor;
         
-        //create initial path, get linerenderer.
+        //create initial path
         private void Start()
         {
             // create path

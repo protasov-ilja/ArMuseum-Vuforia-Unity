@@ -4,7 +4,7 @@ using UnityEngine.XR.ARFoundation;
 namespace ARMuseum
 {
     //used to update AR stuff using colliders
-    public class UpdateNavigation : MonoBehaviour
+    public class UpdateARNavigation : MonoBehaviour
     {
         //[SerializeField] private TextMeshProUGUI _testText;
 
@@ -19,9 +19,7 @@ namespace ARMuseum
         private bool _hasEntered; //used for onenter collider, make sure it happens only once
         private bool _hasExited; //used for onexit collider, make sure it happens only once
         
-        [SerializeField] // used to collect spawned triggers
-        private TriggerCollector _triggersCollector;
-
+        [SerializeField] private TriggerCollector _triggersCollector; // used to collect spawned triggers
         [SerializeField] private GameObject _detinationPointerPrefab;
 
         private void Start()

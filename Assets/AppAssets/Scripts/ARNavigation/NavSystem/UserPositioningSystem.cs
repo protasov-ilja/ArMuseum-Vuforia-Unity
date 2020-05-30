@@ -22,7 +22,7 @@ namespace AppAssets.Scripts.ARNavigation
         [SerializeField] private ARPoseDriver _poseDriver;
         
         private Vector3 _prevUserPosition;
-        private bool _isTracking = false;
+        private bool _isStartTracking = true;
 
         [SerializeField] private TMP_Text _text;
 
@@ -53,9 +53,9 @@ namespace AppAssets.Scripts.ARNavigation
             
             // Move the person indicator according to position
             Vector3 currentUserPosition = _poseDriver.transform.localPosition; // changed to local pos!!!
-            if (!_isTracking)
+            if (_isStartTracking)
             {
-                _isTracking = true;
+                _isStartTracking = false;
                 _prevUserPosition = _poseDriver.transform.localPosition; // changed to local pos!!!
             }
             
@@ -69,17 +69,14 @@ namespace AppAssets.Scripts.ARNavigation
                 _userObject.transform.position = new Vector3(_userObject.transform.position.x + deltaPosition.x, _userObject.transform.position.y, _userObject.transform.position.z + deltaPosition.z);/*(deltaPosition.x, 0.0f, deltaPosition.z);*/
 
                 // Set the pose rotation to be used in the CameraFollow script
-                // deprecated: FirstPersonCamera.GetComponent<ArrowDirection>().targetRot = Frame.Pose.rotation;
-                // new:
                 //Debug.Log($"Camera Direction { Frame.Pose.rotation.eulerAngles }");
                 _userDirectionController.TargetRotation = _poseDriver.transform.rotation;
             }
         }
         
-        // move to person indicator to the new spot
+        // move to person indicator to the new spot where placed marker
         private void RelocateUser(string imageRelocationPointName)
         {
-            
             Debug.Log("Relocate!");
             // find the correct location scanned and move the person to its position
 
