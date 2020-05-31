@@ -1050,6 +1050,7 @@ GameObject:
   - component: {fileID: 8672970803346052917}
   - component: {fileID: 8672970803346052916}
   - component: {fileID: 8672970803346052923}
+  - component: {fileID: 1940609396}
   m_Layer: 8
   m_Name: Room2Text
   m_TagString: Untagged
@@ -1244,6 +1245,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &1940609396
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672970803346052921}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8672970803466255302
 GameObject:
   m_ObjectHideFlags: 0
@@ -1257,6 +1274,7 @@ GameObject:
   - component: {fileID: 8672970803466255298}
   - component: {fileID: 8672970803466255297}
   - component: {fileID: 8672970803466255296}
+  - component: {fileID: 1864124117}
   m_Layer: 8
   m_Name: LivinRoomText
   m_TagString: Untagged
@@ -1451,6 +1469,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &1864124117
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672970803466255302}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8672970803497434516
 GameObject:
   m_ObjectHideFlags: 0
@@ -1620,6 +1654,7 @@ GameObject:
   - component: {fileID: 8672970804034354057}
   - component: {fileID: 8672970804034354056}
   - component: {fileID: 8672970804034354063}
+  - component: {fileID: 1449262503}
   m_Layer: 8
   m_Name: Room1Text
   m_TagString: Untagged
@@ -1814,6 +1849,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &1449262503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672970804034354061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8672970804091441936
 GameObject:
   m_ObjectHideFlags: 0
@@ -1950,6 +2001,7 @@ GameObject:
   - component: {fileID: 8672970804242033463}
   - component: {fileID: 8672970804242033462}
   - component: {fileID: 8672970804242033461}
+  - component: {fileID: 105487603}
   m_Layer: 8
   m_Name: KitchenText
   m_TagString: Untagged
@@ -2144,6 +2196,22 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   m_maskType: 0
+--- !u!114 &105487603
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8672970804242033467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1e3fdca004f2d45fe8abbed571a8abd5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_OverrideArea: 0
+  m_Area: 0
+  m_IgnoreFromBuild: 1
+  m_AffectedAgents: ffffffff
 --- !u!1 &8672970804417561098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2554,7 +2622,7 @@ GameObject:
   - component: {fileID: 8672970804936998677}
   - component: {fileID: 9175897015069609583}
   m_Layer: 0
-  m_Name: PlaneContainer
+  m_Name: MapContainer
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2603,7 +2671,7 @@ MonoBehaviour:
   m_OverrideVoxelSize: 1
   m_VoxelSize: 0.0666667
   m_BuildHeightMesh: 0
-  m_NavMeshData: {fileID: 23800000, guid: 97b5a5e35c29a224cbeffc07ea98ea97, type: 2}
+  m_NavMeshData: {fileID: 23800000, guid: 1158b34c0aa67ec439792e3a09bf6291, type: 2}
 --- !u!114 &9175897015069609583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2626,6 +2694,7 @@ MonoBehaviour:
   - {fileID: 774132010}
   - {fileID: 774132011}
   - {fileID: 774132012}
+  _navSurface: {fileID: 8672970804936998677}
 --- !u!1 &8672970805032187175
 GameObject:
   m_ObjectHideFlags: 0

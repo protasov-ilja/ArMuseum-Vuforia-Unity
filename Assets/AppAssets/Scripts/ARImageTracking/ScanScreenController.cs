@@ -31,12 +31,9 @@ namespace ARMuseum.ARImageTracking
 
         private bool _has3DModel;
 
-        private void Start()
+        private void CustomStart()
         {
             var screenManger = _dataContainer.ScreenManager;
-            
-            _trackingSystem.OnExhibitLost += OnExhibitLost;
-            _trackingSystem.OnExhibitRecognized += OnExhibitRecognized;
             
             _helpButton.onClick.AddListener(() => _helpScreen.gameObject.SetActive(true));
             _show3dModelButton.onClick.AddListener(Show3DModelClicked);
@@ -44,7 +41,13 @@ namespace ARMuseum.ARImageTracking
             _exhibitHistoryButton.onClick.AddListener(() => screenManger.SetScreenState(ScreenState.ExhibitInfo));
         }
 
-        private void OnDestroy()
+        private void Start()
+        {
+            _trackingSystem.OnExhibitLost += OnExhibitLost;
+            _trackingSystem.OnExhibitRecognized += OnExhibitRecognized;
+        }
+
+        private void OnEnable()
         {
             _helpButton.onClick.RemoveAllListeners();
             _show3dModelButton.onClick.RemoveAllListeners();
@@ -88,6 +91,7 @@ namespace ARMuseum.ARImageTracking
         {
             IsActivated = true;
             gameObject.SetActive(true);
+            CustomStart();
         }
 
         public void DeactivateScreen()

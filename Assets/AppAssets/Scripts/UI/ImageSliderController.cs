@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using AppAssets.Scripts.UI.Enums;
+﻿using System.Collections.Generic;
 using ARMuseum.ChooseMuseumScreen;
 using ARMuseum.Scriptables;
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
@@ -21,19 +18,17 @@ namespace AppAssets.Scripts.UI
         private ExhibitDataSO _exhibitData;
 
         private List<GameObject> _imagesCards = new List<GameObject>();
-        
-        private void Awake()
+
+        public void Initialize()
         {
             _exhibitData = _dataContainer.GlobalData.SelectedExhibitData;
-        }
-
-        private void OnEnable()
-        {
+            
             foreach (var spriteData in _exhibitData.Images)
             {
                 var imageCard = Instantiate(_imageCardPrefab, _contentTransform);
                 imageCard.sprite = spriteData;
                 _imagesCards.Add(imageCard.gameObject);
+                imageCard.gameObject.SetActive(true);
             }
         }
 

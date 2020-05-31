@@ -16,8 +16,9 @@ MonoBehaviour:
   _museumName: "\u041A\u0432\u0430\u0440\u0442\u0438\u0440\u0430"
   _description: "\u041A\u0432\u0430\u0440\u0442\u0438\u0440\u0430 \u041A\u0432\u0430\u0440\u0442\u0438\u0440\u0430"
   _city: {fileID: 11400000, guid: 087d9bd3f8753404b875396bfcadf035, type: 2}
-  _image: {fileID: 21300000, guid: 6fc6b244a372bf841a346c9bec554293, type: 3}
-  _navigationMapData: {fileID: 0}
+  _image: {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
+  _navigationMapData: {fileID: 9175897015069609583, guid: 980c452ccb4a49e47b672e6fe99291ab,
+    type: 3}
   _exhibits:
   - {fileID: 11400000, guid: 4bb9346824b45ae4db3bcc85282a92a7, type: 2}
   - {fileID: 11400000, guid: 01563bb2fa37a66438d3ad06c53b24b7, type: 2}

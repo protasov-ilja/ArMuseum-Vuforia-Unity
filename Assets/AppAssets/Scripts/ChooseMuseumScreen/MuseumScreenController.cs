@@ -25,11 +25,14 @@ namespace ARMuseum.ChooseMuseumScreen
         
         public bool IsActivated { get; private set; }
         
-        private void Start()
+        private void CustomStart()
         {
             _globalData = _dataContainer.GlobalData;
             _screenManager = _dataContainer.ScreenManager;
-            
+        }
+
+        private void Start()
+        {
             _cards = new List<MuseumCard>();
             foreach (var museumData in _museumsData.Museums)
             {
@@ -49,6 +52,7 @@ namespace ARMuseum.ChooseMuseumScreen
         {
             IsActivated = true;
             gameObject.SetActive(true);
+            CustomStart();
         }
 
         public void DeactivateScreen()

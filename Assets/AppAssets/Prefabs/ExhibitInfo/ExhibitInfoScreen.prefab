@@ -1078,7 +1078,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.69887775}
   m_AnchorMax: {x: 1, y: 0.99997634}
-  m_AnchoredPosition: {x: 0.5, y: 0.5001221}
+  m_AnchoredPosition: {x: 0.5, y: 0.50024414}
   m_SizeDelta: {x: 1, y: 0.99993896}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &5950765238035843325
@@ -2960,6 +2960,7 @@ MonoBehaviour:
   _exhibitInfoText: {fileID: 5950765238855468375}
   _createPathButton: {fileID: 5950765239360133489}
   _backButton: {fileID: 4777244898477395684}
+  _imageSlider: {fileID: 385723041}
 --- !u!1 &5950765239360133491
 GameObject:
   m_ObjectHideFlags: 0

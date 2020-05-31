@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.Serialization;
 using UnityEngine.XR.ARFoundation;
 
 namespace ARMuseum
@@ -6,14 +7,12 @@ namespace ARMuseum
     //used to update AR stuff using colliders
     public class UpdateARNavigation : MonoBehaviour
     {
-        //[SerializeField] private TextMeshProUGUI _testText;
-
         public ARAnchorManager anchorManager;
         public GameObject trigger; // collider to change arrows
         public GameObject indicator; // arrow prefab to spawn
         public GameObject arCoreDeviceCam; // ar camera
         public GameObject arrowHelper; // box facing the arrow of person indicator used to calculate spawned AR arrow direction
-        public LineRenderer line; // line renderer used to calculate spawned ARarrow direction
+        [FormerlySerializedAs("line")] public LineRenderer _lineRenderer; // line renderer used to calculate spawned ARarrow direction
         
         private ARAnchor _anchor; //spawned anchor when putting somthing AR on screen
         private bool _hasEntered; //used for onenter collider, make sure it happens only once
@@ -38,7 +37,7 @@ namespace ARMuseum
         private void OnTriggerEnter(Collider other)
         {
             // if it is a navTrigger then calculate angle and spawn a new AR arrow
-            if (other.name.Equals("NavTrigger(Clone)") && line.positionCount > 0)
+            if (other.name.Equals("NavTrigger(Clone)") && _lineRenderer.positionCount > 0)
             {
                 if (_hasEntered)
                 {
@@ -53,7 +52,7 @@ namespace ARMuseum
                     userUnityPosition.z);
                 Vector2 personHelp = new Vector2(arrowHelper.transform.position.x, 
                          arrowHelper.transform.position.z);
-                Vector3 node3D = line.GetPosition(1);
+                Vector3 node3D = _lineRenderer.GetPosition(1);
                 Vector2 node2D = new Vector2(node3D.x, node3D.z);
 
                 float angle = Mathf.Rad2Deg * (Mathf.Atan2(personHelp.y - personPos.y, 
@@ -75,17 +74,19 @@ namespace ARMuseum
                 var connectedTrigger = other.gameObject.GetComponent<NavigationTrigger>(); // move script on NavTrigger prefab before start
                 connectedTrigger.NavigationArrow = _anchor;
                 
+                var anchorTransform = _anchor.transform;
+                
                 //spawn arrow
-                if (line.positionCount > 0)
+                if (_lineRenderer.positionCount > 0)
                 {
-                    var destinationPosition = line.GetPosition(line.positionCount - 1);
+                    var destinationPosition = _lineRenderer.GetPosition(_lineRenderer.positionCount - 1);
                     var dist = Vector2.Distance(new Vector2(destinationPosition.x, destinationPosition.z), personPos);
                     //_testText.text = dist.ToString();
                     if (dist <= 1.1f)
                     {
                         GameObject destSpawned = Instantiate(_detinationPointerPrefab, 
-                            _anchor.transform.position, _anchor.transform.rotation, 
-                            _anchor.transform);
+                            anchorTransform.position, anchorTransform.rotation, 
+                            anchorTransform);
                         
                         // use calculated angle on spawned arrow
                         destSpawned.transform.Rotate(0, angle, 0, Space.Self);
@@ -96,8 +97,8 @@ namespace ARMuseum
                 }
                 
                 GameObject spawned = Instantiate(indicator, 
-                    _anchor.transform.position, _anchor.transform.rotation, 
-                    _anchor.transform);
+                    anchorTransform.position, anchorTransform.rotation, 
+                    anchorTransform);
                 // use calculated angle on spawned arrow
                 spawned.transform.Rotate(0, angle, 0, Space.Self);
 

@@ -31,23 +31,21 @@ namespace ARMuseum.SearchScreen
         private List<string> _exhibitsNames = new List<string>();
 
         private List<ExhibitCard> _activeCards = new List<ExhibitCard>();
-
-        private bool _fistRun = true;
         
         private void Start()
         {
             _confirmInputButton.onClick.AddListener(Search);
-            
-            _globalData = _dataContainer.GlobalData;
-            _screenManager = _dataContainer.ScreenManager;
-            _fistRun = false;
-            PopulateContent();
         }
 
-        private void OnEnable()
+        private void OnDestroy()
         {
-            if (_fistRun) return;
-                
+            _confirmInputButton.onClick.RemoveListener(Search);
+        }
+
+        private void CustomStart()
+        {
+            _globalData = _dataContainer.GlobalData;
+            _screenManager = _dataContainer.ScreenManager;
             PopulateContent();
         }
 
@@ -87,6 +85,7 @@ namespace ARMuseum.SearchScreen
         {
             IsActivated = true;
             gameObject.SetActive(true);
+            CustomStart();
         }
 
         public void DeactivateScreen()

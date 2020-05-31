@@ -1,36 +1,62 @@
-﻿using System.Linq;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using AppAssets.Scripts.ARNavigation;
+using AppAssets.Scripts.ARNavigation.NavSystem;
+using ARMuseum.ChooseMuseumScreen;
 using ARMuseum.RaycastThrowImageTesting;
+using ARMuseum.Scriptables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
+using UnityEngine.Serialization;
+using Zenject;
 
 namespace ARMuseum
 {
     public class ARNavigationSystem : MonoBehaviour
     {
-        [Header("UI")]
+        [Inject] private GlobalDataContainer _dataContainer;
 
+        [FormerlySerializedAs("trigger")]
         [Header("AppComponents")]
-        public GameObject trigger; // trigger to spawn and despawn AR arrows
-        public NavigationDestination[] destinations; // list of destination positions
-        public GameObject _userTarget; // person indicator
+        [SerializeField] private GameObject _triggerPrefab; // trigger to spawn and despawn AR arrows
         
+        [SerializeField] private GameObject _userTarget; // person indicator
+        [SerializeField] private UserPositioningSystem _positioningSystem;
+
         // used to hit rays throw minimap to unity world
-        public RenderTexture2DRayCaster _textureMapRayCaster;
+        [SerializeField] private RenderTexture2DRayCaster _textureMapRayCaster;
         
         [SerializeField] private LineRenderer _line; // line renderer to display path
         [SerializeField] private TriggerCollector _triggersCollector; // used to collect spawned triggers
         
+        private List<NavigationDestination> _destinations; // list of destination positions
         private NavigationDestination _navTarget; // current chosen destination
         private NavMeshPath _path; // current calculated path
         private bool _destinationSet; // bool to say if a destination is set
 
         private GameObject _destination;
         private GameObject _destinationAnchor;
+
+        private GlobalDataSO _globalData;
+        private MapManager _mapManager;
+
+        public Action<string> OnDestinationSet;
+
+        private bool _isDataAlreadySet;
         
-        //create initial path
         private void Start()
         {
+            if (_isDataAlreadySet) return;
+            
+            _globalData = _dataContainer.GlobalData;
+            _mapManager = Instantiate(_globalData.SelectedMuseumData.NavigationMapData);
+            
+            _destinations = _mapManager.Destinations;
+
+            _positioningSystem.Initialize(_mapManager.RelocationPoints);
+
             // create path
             _path = new NavMeshPath();
             _destinationSet = false; // reset destination
@@ -68,7 +94,7 @@ namespace ARMuseum
         }
 
         //set current destination and create a trigger for showing AR arrows
-        public void SetDestination(string destinationName)
+        private void SetDestination(string destinationName)
         {
             _triggersCollector.ClearList();
             
@@ -77,19 +103,62 @@ namespace ARMuseum
                 _navTarget.ActivateDestinationPointer(false);
             }
 
-            var targetTransform = destinations.Where(d => d.gameObject.name == destinationName).ToList();
+            var targetTransform = _destinations.Where(d => d.gameObject.name == destinationName).ToList();
             
             var prevTrigger = GameObject.Find("NavTrigger(Clone)");
             if (prevTrigger != null)
             {
-                Destroy(prevTrigger);
+                Destroy(prevTrigger.gameObject);
             }
             
             _navTarget = targetTransform[0];
             _navTarget.ActivateDestinationPointer(true);
+            OnDestinationSet?.Invoke(_navTarget.HallData.HallName);
+        }
 
-            var obj = Instantiate(trigger, _userTarget.transform.position, _userTarget.transform.rotation);
-            Debug.Log($"NavigationControllerFound! { destinationName } position: { obj.transform.position }");
+        public void SetDestinationManually(string destinationName)
+        {
+            _isDataAlreadySet = true;
+            _globalData = _dataContainer.GlobalData;
+            _mapManager = Instantiate(_globalData.SelectedMuseumData.NavigationMapData);
+            
+            _destinations = _mapManager.Destinations;
+
+            _positioningSystem.Initialize(_mapManager.RelocationPoints);
+
+            // create path
+            _path = new NavMeshPath();
+            _destinationSet = false; // reset destination
+            
+            _triggersCollector.ClearList();
+            
+            if (_navTarget != null)
+            {
+                _navTarget.ActivateDestinationPointer(false);
+            }
+
+            var targetTransform = _destinations.Where(d => d.HallData.HallName == destinationName).ToList();
+            
+            var prevTrigger = GameObject.Find("NavTrigger(Clone)");
+            if (prevTrigger != null)
+            {
+                Destroy(prevTrigger.gameObject);
+            }
+            
+            _navTarget = targetTransform[0];
+            _navTarget.ActivateDestinationPointer(true);
+            OnDestinationSet?.Invoke(_navTarget.HallData.HallName);
+        }
+
+        public void SetPositioningSystemSubscriber(IPositioningSystemSubscriber subscriber)
+        {
+            _positioningSystem.OnUserRelocated += subscriber.OnUserRelocated;
+        }
+
+        public void ConfirmDestination()
+        {
+            var obj = Instantiate(_triggerPrefab, _userTarget.transform.position, _userTarget.transform.rotation);
+            Debug.Log($"NavigationControllerFound! { _navTarget.name } position: { obj.transform.position }");
             
             _triggersCollector.AddTrigger(obj);
             

@@ -1,4 +1,5 @@
 ﻿using System;
+using AppAssets.Scripts.ARNavigation.NavSystem;
 using UnityEngine;
 
 namespace ARMuseum.Scriptables
@@ -17,7 +18,7 @@ namespace ARMuseum.Scriptables
         [SerializeField, TextArea] private string _description;
         [SerializeField] private CityDataSO _city;
         [SerializeField] private Sprite _image;
-        [SerializeField] private GameObject _navigationMapData;
+        [SerializeField] private MapManager _navigationMapData;
         [SerializeField] private ExhibitDataSO[] _exhibits;
 
         public string MuseumName => _museumName;
@@ -25,6 +26,7 @@ namespace ARMuseum.Scriptables
 
         public Sprite MuseumImage => _image;
         public CityDataSO City => _city;
+        public MapManager NavigationMapData => _navigationMapData;
         public ExhibitDataSO[] Exhibits => _exhibits;
     }
 }

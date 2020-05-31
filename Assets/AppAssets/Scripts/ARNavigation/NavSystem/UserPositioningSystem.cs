@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Serialization;
 using UnityEngine.XR.ARFoundation;
 
 namespace AppAssets.Scripts.ARNavigation
@@ -11,7 +10,7 @@ namespace AppAssets.Scripts.ARNavigation
     public class UserPositioningSystem : MonoBehaviour
     {
         [SerializeField] private NavigationMarkersScanner _markersScanner;
-        [SerializeField] private List<UserRelocationPoint> _relocationPoints = new List<UserRelocationPoint>();
+        
         /// <summary>
         /// places on FirstPersonCamera
         /// </summary>
@@ -21,12 +20,15 @@ namespace AppAssets.Scripts.ARNavigation
         [SerializeField] private GameObject _userObject;
         [SerializeField] private ARPoseDriver _poseDriver;
         
+        [SerializeField] private TMP_Text _text;
+        
         private Vector3 _prevUserPosition;
         private bool _isStartTracking = true;
 
-        [SerializeField] private TMP_Text _text;
-
         private bool _isRecognized;
+        private List<UserRelocationPoint> _relocationPoints = new List<UserRelocationPoint>();
+
+        public Action OnUserRelocated;
 
         public void Awake()
         {
@@ -73,6 +75,11 @@ namespace AppAssets.Scripts.ARNavigation
                 _userDirectionController.TargetRotation = _poseDriver.transform.rotation;
             }
         }
+
+        public void Initialize(List<UserRelocationPoint> relocationPoints)
+        {
+            _relocationPoints = relocationPoints;
+        }
         
         // move to person indicator to the new spot where placed marker
         private void RelocateUser(string imageRelocationPointName)
@@ -84,12 +91,14 @@ namespace AppAssets.Scripts.ARNavigation
             var relocationPoint = _relocationPoints.First(p => p.PointName == imageRelocationPointName);
             if (relocationPoint != null)
             {
-                //var userRotationEuler = _userObject.transform.rotation.eulerAngles;
-                //_userObject.transform.rotation = relocationPoint.transform.rotation;
+                var userRotationEuler = _userObject.transform.rotation.eulerAngles;
+                _userObject.transform.rotation = relocationPoint.transform.rotation;
                 Debug.Log($"text: { imageRelocationPointName }, Location: { relocationPoint.PointName }");
                 var relocationPointPosition = relocationPoint.transform.position;
                 _userObject.transform.position = new Vector3(relocationPointPosition.x, 
                     _userObject.transform.position.y, relocationPointPosition.z);
+                
+                OnUserRelocated?.Invoke();
             }
         }
     }

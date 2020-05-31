@@ -29,13 +29,16 @@ namespace ARMuseum.ExhibitTypeScreen
 
         private void Start()
         {
-            _globalData = _dataContainer.GlobalData;
-            _screenManager = _dataContainer.ScreenManager;
-            
             _paintButton.onClick.AddListener(OnSelectPaint);
             _sculptureButton.onClick.AddListener(OnSelectSculpture);
             _backToMuseumsButton.onClick.AddListener(OnBackButtonClicked);
             _helpScreenButton.onClick.AddListener(OnHelpClicked);
+        }
+
+        private void CustomStart()
+        {
+            _globalData = _dataContainer.GlobalData;
+            _screenManager = _dataContainer.ScreenManager;
         }
 
         private void OnDestroy()
@@ -72,6 +75,7 @@ namespace ARMuseum.ExhibitTypeScreen
         {
             IsActivated = true;
             gameObject.SetActive(true);
+            CustomStart();
         }
 
         public void DeactivateScreen()

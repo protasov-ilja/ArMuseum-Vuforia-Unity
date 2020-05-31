@@ -19,6 +19,6 @@ MonoBehaviour:
   - {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
   _description: "\u0421\u043E\u0432\u0435\u0442\u0441\u043A\u0438\u0439 \u0442\u0430\u043D\u043A
     \u0418\u0421-3"
-  _hall: {fileID: 11400000, guid: a7e31464ff62de24dae7caf10fb77ce6, type: 2}
+  _hall: {fileID: 11400000, guid: cd082f8bb5a9869478cc626452505aed, type: 2}
   _audioGuid: {fileID: 0}
   _worldTargetPrefab: {fileID: 0}

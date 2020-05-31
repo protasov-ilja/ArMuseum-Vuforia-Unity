@@ -11,19 +11,15 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
 {
     public class BottomNavMenuController : SerializedMonoBehaviour
     {
-        [SerializeField] private List<NavButton> _menuButtons;
-        
         [Inject] private GlobalDataContainer _dataContainer;
+        
+        [SerializeField] private List<NavButton> _menuButtons;
 
         private ScreenStateManager _screenManager;
-        
-        private void Awake()
-        {
-            _screenManager = _dataContainer.ScreenManager;
-        }
 
         private void Start()
         {
+            _screenManager = _dataContainer.ScreenManager;
             foreach (var navButton in _menuButtons)
             {
                 navButton.Initialize(this);

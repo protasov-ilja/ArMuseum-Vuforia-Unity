@@ -1,5 +1,7 @@
+#if UNITY_EDITOR
 using UnityEditor;
 using UnityEngine;
+
 public static class AnchorFitter
 {
 	[MenuItem("CONTEXT/RectTransform/Fit Anchors")]
@@ -29,3 +31,4 @@ public static class AnchorFitter
 		rect.pivot = new Vector2(0.5f, 0.5f);
 	}
 }
+#endif
