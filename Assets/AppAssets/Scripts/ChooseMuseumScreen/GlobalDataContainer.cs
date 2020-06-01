@@ -6,7 +6,7 @@ namespace ARMuseum.ChooseMuseumScreen
 {
     public class GlobalDataContainer : MonoBehaviour
     {
-        [SerializeField] private GlobalDataSO _globalData;
+        [SerializeField] private GlobalDataSO _globalData = default;
         public GlobalDataSO GlobalData => _globalData;
         public ScreenStateManager ScreenManager
         {

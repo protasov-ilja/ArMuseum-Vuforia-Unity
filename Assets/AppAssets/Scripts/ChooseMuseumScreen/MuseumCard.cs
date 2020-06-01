@@ -8,10 +8,10 @@ namespace ARMuseum.ChooseMuseumScreen
 {
     public class MuseumCard : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _museumName;
-        [SerializeField] private TMP_Text _cityName;
-        [SerializeField] private Image _museumImage;
-        [SerializeField] private Button _button;
+        [SerializeField] private TMP_Text _museumName = default;
+        [SerializeField] private TMP_Text _cityName = default;
+        [SerializeField] private Image _museumImage = default;
+        [SerializeField] private Button _button = default;
 
         private MuseumDataSO _museumData;
 

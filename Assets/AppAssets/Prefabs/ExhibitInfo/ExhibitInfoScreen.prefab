@@ -2959,7 +2959,8 @@ MonoBehaviour:
   _exhibitHallName: {fileID: 5950765239714953807}
   _exhibitInfoText: {fileID: 5950765238855468375}
   _createPathButton: {fileID: 5950765239360133489}
-  _backButton: {fileID: 4777244898477395684}
+  _backToSearch: {fileID: 4777244898477395684}
+  _backToScan: {fileID: 0}
   _imageSlider: {fileID: 385723041}
 --- !u!1 &5950765239360133491
 GameObject:

@@ -15,14 +15,15 @@ namespace ARMuseum.ExhibitInfoScreen
     {
         [Inject] private GlobalDataContainer _dataContainer; 
         
-        [SerializeField] private TMP_Text _exhibitName;
-        [SerializeField] private TMP_Text _exhibitHallName;
-        [SerializeField] private TMP_Text _exhibitInfoText;
+        [SerializeField] private TMP_Text _exhibitName = default;
+        [SerializeField] private TMP_Text _exhibitHallName = default;
+        [SerializeField] private TMP_Text _exhibitInfoText = default;
 
-        [SerializeField] private Button _createPathButton;
-        [SerializeField] private Button _backButton;
+        [SerializeField] private Button _createPathButton = default;
+        [SerializeField] private Button _backToSearch = default;
+        [SerializeField] private Button _backToScan = default;
 
-        [SerializeField] private ImageSliderController _imageSlider;
+        [SerializeField] private ImageSliderController _imageSlider = default;
         
         private ExhibitDataSO _exhibitData;
         private ScreenStateManager _screenManager;
@@ -31,7 +32,28 @@ namespace ARMuseum.ExhibitInfoScreen
 
         private void Start()
         {
-            _backButton.onClick.AddListener(BackToSearch);
+            if (_backToScan != null)
+            {
+                _backToScan.onClick.AddListener(BackToScan);
+            }
+
+            if (_backToSearch != null)
+            {
+                _backToSearch.onClick.AddListener(BackToSearch);
+            }
+        }
+
+        private void OnDestroy()
+        {
+            if (_backToSearch != null)
+            {
+                _backToScan.onClick.RemoveListener(BackToScan);
+            }
+            
+            if (_backToSearch != null)
+            {
+                _backToSearch.onClick.RemoveListener(BackToSearch);
+            }
         }
 
         private void CustomStart()
@@ -52,6 +74,12 @@ namespace ARMuseum.ExhibitInfoScreen
         {
             _dataContainer.GlobalData.SelectedExhibitData = null;
             _screenManager.SetScreenState(ScreenState.Search);
+        }
+
+        private void BackToScan()
+        {
+            _dataContainer.GlobalData.SelectedExhibitData = null;
+            _screenManager.SetScreenState(ScreenState.Scan);
         }
 
         private void OnDisable()

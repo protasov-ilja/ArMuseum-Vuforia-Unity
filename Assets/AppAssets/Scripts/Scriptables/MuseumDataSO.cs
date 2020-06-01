@@ -13,13 +13,13 @@ namespace ARMuseum.Scriptables
             _id = Guid.NewGuid().ToString();
         }
         
-        [SerializeField] private string _id;
-        [SerializeField] private string _museumName;
-        [SerializeField, TextArea] private string _description;
-        [SerializeField] private CityDataSO _city;
-        [SerializeField] private Sprite _image;
-        [SerializeField] private MapManager _navigationMapData;
-        [SerializeField] private ExhibitDataSO[] _exhibits;
+        [SerializeField] private string _id = default;
+        [SerializeField] private string _museumName = default;
+        [SerializeField, TextArea] private string _description = default;
+        [SerializeField] private CityDataSO _city = default;
+        [SerializeField] private Sprite _image = default;
+        [SerializeField] private MapManager _navigationMapData = default;
+        [SerializeField] private ExhibitDataSO[] _exhibits = default;
 
         public string MuseumName => _museumName;
         public string CityName => _city.CityName;

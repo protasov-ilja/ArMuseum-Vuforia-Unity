@@ -17,19 +17,18 @@ namespace ARMuseum
     public class ARNavigationSystem : MonoBehaviour
     {
         [Inject] private GlobalDataContainer _dataContainer;
-
-        [FormerlySerializedAs("trigger")]
-        [Header("AppComponents")]
-        [SerializeField] private GameObject _triggerPrefab; // trigger to spawn and despawn AR arrows
         
-        [SerializeField] private GameObject _userTarget; // person indicator
-        [SerializeField] private UserPositioningSystem _positioningSystem;
+        [Header("AppComponents")]
+        [SerializeField] private GameObject _triggerPrefab = default; // trigger to spawn and despawn AR arrows
+        
+        [SerializeField] private GameObject _userTarget = default; // person indicator
+        [SerializeField] private UserPositioningSystem _positioningSystem = default;
 
         // used to hit rays throw minimap to unity world
-        [SerializeField] private RenderTexture2DRayCaster _textureMapRayCaster;
+        [SerializeField] private RenderTexture2DRayCaster _textureMapRayCaster = default;
         
-        [SerializeField] private LineRenderer _line; // line renderer to display path
-        [SerializeField] private TriggerCollector _triggersCollector; // used to collect spawned triggers
+        [SerializeField] private LineRenderer _line = default; // line renderer to display path
+        [SerializeField] private TriggerCollector _triggersCollector = default; // used to collect spawned triggers
         
         private List<NavigationDestination> _destinations; // list of destination positions
         private NavigationDestination _navTarget; // current chosen destination
@@ -42,9 +41,11 @@ namespace ARMuseum
         private GlobalDataSO _globalData;
         private MapManager _mapManager;
 
-        public Action<string> OnDestinationSet;
+        public event Action<string> OnDestinationSet;
 
         private bool _isDataAlreadySet;
+
+        private IPositioningSystemSubscriber _subscriber;
         
         private void Start()
         {
@@ -152,7 +153,13 @@ namespace ARMuseum
 
         public void SetPositioningSystemSubscriber(IPositioningSystemSubscriber subscriber)
         {
-            _positioningSystem.OnUserRelocated += subscriber.OnUserRelocated;
+            _subscriber = subscriber;
+            _positioningSystem.OnUserRelocated += _subscriber.OnUserRelocated;
+        }
+
+        private void OnDestroy()
+        {
+            _positioningSystem.OnUserRelocated += _subscriber.OnUserRelocated;
         }
 
         public void ConfirmDestination()

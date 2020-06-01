@@ -15,7 +15,7 @@ namespace ARMuseum.ChooseMuseumScreen
 
         private Dictionary<ScreenState, IScreenManager> _screenBindings;
 
-        public Action<ScreenState> OnScreenStateChanged;
+        public event Action<ScreenState> OnScreenStateChanged;
 
         private Dictionary<ScreenState, string> _sceneBindings = new Dictionary<ScreenState, string>
         {

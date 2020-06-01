@@ -14,13 +14,13 @@ namespace ARMuseum.ExhibitTypeScreen
     {
         [Inject] private GlobalDataContainer _dataContainer;
 
-        [SerializeField] private Button _paintButton;
-        [SerializeField] private Button _sculptureButton;
+        [SerializeField] private Button _paintButton = default;
+        [SerializeField] private Button _sculptureButton = default;
 
-        [SerializeField] private Button _backToMuseumsButton;
-        [SerializeField] private Button _helpScreenButton;
+        [SerializeField] private Button _backToMuseumsButton = default;
+        [SerializeField] private Button _helpScreenButton = default;
 
-        [SerializeField] private GameObject _helpScreen;
+        [SerializeField] private GameObject _helpScreen = default;
 
         private GlobalDataSO _globalData;
         private ScreenStateManager _screenManager;

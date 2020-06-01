@@ -12,14 +12,14 @@ namespace ARMuseum
         public GameObject indicator; // arrow prefab to spawn
         public GameObject arCoreDeviceCam; // ar camera
         public GameObject arrowHelper; // box facing the arrow of person indicator used to calculate spawned AR arrow direction
-        [FormerlySerializedAs("line")] public LineRenderer _lineRenderer; // line renderer used to calculate spawned ARarrow direction
+        public LineRenderer _lineRenderer; // line renderer used to calculate spawned ARarrow direction
         
         private ARAnchor _anchor; //spawned anchor when putting somthing AR on screen
         private bool _hasEntered; //used for onenter collider, make sure it happens only once
         private bool _hasExited; //used for onexit collider, make sure it happens only once
         
-        [SerializeField] private TriggerCollector _triggersCollector; // used to collect spawned triggers
-        [SerializeField] private GameObject _detinationPointerPrefab;
+        [SerializeField] private TriggerCollector _triggersCollector = default; // used to collect spawned triggers
+        [SerializeField] private GameObject _detinationPointerPrefab = default;
 
         private void Start()
         {

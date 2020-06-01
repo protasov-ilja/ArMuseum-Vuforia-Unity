@@ -6,7 +6,7 @@ namespace ARMuseum.UI
 {
     public class ButtonsSelector : MonoBehaviour
     {
-        [SerializeField] private SelectedButton[] _buttons;
+        [SerializeField] private SelectedButton[] _buttons = default;
 
         private void OnEnable()
         {

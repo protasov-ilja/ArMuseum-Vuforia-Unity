@@ -9,18 +9,18 @@ namespace AppAssets.Scripts.ARNavigation
 {
     public class UserPositioningSystem : MonoBehaviour
     {
-        [SerializeField] private NavigationMarkersScanner _markersScanner;
+        [SerializeField] private NavigationMarkersScanner _markersScanner = default;
         
         /// <summary>
         /// places on FirstPersonCamera
         /// </summary>
-        [SerializeField] private UserDirectionController _userDirectionController;
+        [SerializeField] private UserDirectionController _userDirectionController = default;
 
         // custom fields
-        [SerializeField] private GameObject _userObject;
-        [SerializeField] private ARPoseDriver _poseDriver;
+        [SerializeField] private GameObject _userObject = default;
+        [SerializeField] private ARPoseDriver _poseDriver = default;
         
-        [SerializeField] private TMP_Text _text;
+        [SerializeField] private TMP_Text _text = default;
         
         private Vector3 _prevUserPosition;
         private bool _isStartTracking = true;
@@ -28,7 +28,7 @@ namespace AppAssets.Scripts.ARNavigation
         private bool _isRecognized;
         private List<UserRelocationPoint> _relocationPoints = new List<UserRelocationPoint>();
 
-        public Action OnUserRelocated;
+        public event Action OnUserRelocated;
 
         public void Awake()
         {

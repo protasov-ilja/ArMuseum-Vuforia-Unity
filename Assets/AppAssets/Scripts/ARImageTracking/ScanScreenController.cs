@@ -39,6 +39,7 @@ namespace ARMuseum.ARImageTracking
             _show3dModelButton.onClick.AddListener(Show3DModelClicked);
             _backButton.onClick.AddListener(() => screenManger.SetScreenState(ScreenState.ExhibitType));
             _exhibitHistoryButton.onClick.AddListener(() => screenManger.SetScreenState(ScreenState.ExhibitInfo));
+            DisableExhibitButtons();
         }
 
         private void Start()
@@ -47,7 +48,13 @@ namespace ARMuseum.ARImageTracking
             _trackingSystem.OnExhibitRecognized += OnExhibitRecognized;
         }
 
-        private void OnEnable()
+        private void OnDestroy()
+        {
+            _trackingSystem.OnExhibitLost -= OnExhibitLost;
+            _trackingSystem.OnExhibitRecognized -= OnExhibitRecognized;
+        }
+
+        private void OnDisable()
         {
             _helpButton.onClick.RemoveAllListeners();
             _show3dModelButton.onClick.RemoveAllListeners();
@@ -81,6 +88,11 @@ namespace ARMuseum.ARImageTracking
         }
 
         public void OnExhibitLost()
+        {
+            DisableExhibitButtons();
+        }
+
+        private void DisableExhibitButtons()
         {
             _scanFocusIcon.gameObject.SetActive(true);
             _infoPanelText.text = "Сканирую...";

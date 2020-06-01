@@ -16,18 +16,18 @@ namespace AppAssets.Scripts.ARNavigation
     {
         [Inject] private GlobalDataContainer _dataContainer;
         
-        [SerializeField] private Button _backToMuseumButton;
-        [SerializeField] private Button _mapButton;
+        [SerializeField] private Button _backToMuseumButton = default;
+        [SerializeField] private Button _mapButton = default;
 
-        [SerializeField] private GameObject _mapScreen;
-        [SerializeField] private Button _backToNavigationButton;
-        [SerializeField] private Button _confirmNavigationButton;
+        [SerializeField] private GameObject _mapScreen = default;
+        [SerializeField] private Button _backToNavigationButton = default;
+        [SerializeField] private Button _confirmNavigationButton = default;
 
-        [SerializeField] private GameObject _focusTargetIcon;
-        [SerializeField] private TMP_Text _destinationNameText;
-        [SerializeField] private GameObject _destinationInfoPanel;
+        [SerializeField] private GameObject _focusTargetIcon = default;
+        [SerializeField] private TMP_Text _destinationNameText = default;
+        [SerializeField] private GameObject _destinationInfoPanel = default;
 
-        [SerializeField] private ARNavigationSystem _arNavigationSystem;
+        [SerializeField] private ARNavigationSystem _arNavigationSystem = default;
         
         private ScreenStateManager _screenManager;
         private GlobalDataSO _globalData;

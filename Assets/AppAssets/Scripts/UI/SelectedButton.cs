@@ -7,8 +7,8 @@ namespace ARMuseum.UI
     [RequireComponent(typeof(Button))]
     public class SelectedButton : MonoBehaviour
     {
-        [SerializeField] private GameObject _selectedImage;
-        [SerializeField] private Button _button;
+        [SerializeField] private GameObject _selectedImage = default;
+        [SerializeField] private Button _button = default;
         
         public int Id { get; set; }
         

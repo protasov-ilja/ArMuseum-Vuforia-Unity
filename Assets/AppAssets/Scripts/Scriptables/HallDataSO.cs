@@ -12,9 +12,9 @@ namespace ARMuseum.Scriptables
             _id = Guid.NewGuid().ToString();
         }
         
-        [SerializeField] private string _id;
-        [SerializeField] private string _hallName;
-        [SerializeField] private string _description;
+        [SerializeField] private string _id = default;
+        [SerializeField] private string _hallName = default;
+        [SerializeField] private string _description = default;
         
         public string HallName => _hallName;
         public string Description => _description;

@@ -23,8 +23,8 @@ namespace ARMuseum.ARImageTracking
         private string _recognizedExhibitId;
         private TrackableExhibitEventHandler _currentTrackable;
 
-        public Action<string, bool> OnExhibitRecognized;
-        public Action OnExhibitLost;
+        public event Action<string, bool> OnExhibitRecognized;
+        public event Action OnExhibitLost;
         
         private void Start()
         {
@@ -52,20 +52,30 @@ namespace ARMuseum.ARImageTracking
 
         private void OnTargetLost(string lostExhibitId)
         {
-            _currentTrackable = null;
-            Debug.Log("LOST");
-            _recognizedExhibitId = "";
-            OnExhibitLost?.Invoke();
+            if (_currentTrackable != null)
+            {
+                _currentTrackable.Deactivate3DModel();
+                _currentTrackable = null;
+                Debug.Log("LOST");
+                _recognizedExhibitId = "";
+                OnExhibitLost?.Invoke();
+            }
         }
 
         public void Activate3DModel()
         {
-            _currentTrackable.Activate3DModel();
+            if (_currentTrackable != null)
+            {
+                _currentTrackable.Activate3DModel();
+            }
         }
 
         public void Deactivate3DModel()
         {
-            _currentTrackable.Deactivate3DModel();
+            if (_currentTrackable != null)
+            {
+                _currentTrackable.Deactivate3DModel();
+            }
         }
     }
 }

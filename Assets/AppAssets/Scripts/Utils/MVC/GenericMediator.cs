@@ -7,8 +7,8 @@ namespace ARMuseum.Utils.MVC
         where TView : IView
         where TController : IController
     {
-        [SerializeField] protected TController _controller;
-        [SerializeField] protected TView _view;
+        [SerializeField] protected TController _controller = default;
+        [SerializeField] protected TView _view = default;
         
         protected TModel _model;
 

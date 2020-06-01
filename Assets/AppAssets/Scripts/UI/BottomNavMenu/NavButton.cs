@@ -8,14 +8,14 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
 {
     public class NavButton : MonoBehaviour
     {
-        [SerializeField] private Image _buttonIcon;
-        [SerializeField] private TMP_Text _buttonText;
-        [SerializeField] private Image _buttonBackground;
+        [SerializeField] private Image _buttonIcon = default;
+        [SerializeField] private TMP_Text _buttonText = default;
+        [SerializeField] private Image _buttonBackground = default;
 
-        [SerializeField] private Color _activeColor;
-        [SerializeField] private Color _inactiveColor;
-        [SerializeField] private Button _button;
-        [SerializeField] private ScreenState _screenState;
+        [SerializeField] private Color _activeColor = default;
+        [SerializeField] private Color _inactiveColor = default;
+        [SerializeField] private Button _button = default;
+        [SerializeField] private ScreenState _screenState = default;
 
         private Action<ScreenState> OnScreenSelected;
         

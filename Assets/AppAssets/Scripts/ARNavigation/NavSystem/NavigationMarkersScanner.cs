@@ -6,9 +6,9 @@ namespace AppAssets.Scripts.ARNavigation
 {
     public class NavigationMarkersScanner : MonoBehaviour
     {
-        [SerializeField] private ARTrackedImageManager _trackedImageManager;
+        [SerializeField] private ARTrackedImageManager _trackedImageManager = default;
 
-        public Action<string> OnImageRecognized;
+        public event Action<string> OnImageRecognized;
         
         private void OnEnable()
         {

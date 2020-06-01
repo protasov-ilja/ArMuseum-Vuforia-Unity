@@ -15,13 +15,13 @@ namespace ARMuseum.SearchScreen
 {
     public class SearchScreenController : MonoBehaviour, IScreenManager
     {
-        [Inject] private GlobalDataContainer _dataContainer; 
-        
-        [SerializeField] private ExhibitCard _exhibitCardPrefab;
-        [SerializeField] private Transform _contentTransform;
+        [Inject] private GlobalDataContainer _dataContainer;
 
-        [SerializeField] private TMP_InputField _inputField;
-        [SerializeField] private Button _confirmInputButton; 
+        [SerializeField] private ExhibitCard _exhibitCardPrefab = default;
+        [SerializeField] private Transform _contentTransform = default;
+
+        [SerializeField] private TMP_InputField _inputField = default;
+        [SerializeField] private Button _confirmInputButton = default; 
         
         public bool IsActivated { get; private set; }
 

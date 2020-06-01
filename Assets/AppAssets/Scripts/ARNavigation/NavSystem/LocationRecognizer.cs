@@ -7,8 +7,8 @@ namespace ARMuseum
     {
         private string _currentLocation;
 
-        public Action<string> OnEnterLocation;
-        public Action<string> OnExitLocation;
+        public event Action<string> OnEnterLocation;
+        public event Action<string> OnExitLocation;
         
         private void OnTriggerEnter(Collider other)
         {

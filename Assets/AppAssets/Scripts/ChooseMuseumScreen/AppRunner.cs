@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using AppAssets.Scripts.UI;
 using AppAssets.Scripts.UI.Enums;
 using Sirenix.OdinInspector;
@@ -12,7 +11,7 @@ namespace ARMuseum.ChooseMuseumScreen
     {
         [Inject] private GlobalDataContainer _dataContainer;
         
-        [SerializeField] private Dictionary<ScreenState, IScreenManager> _screensBindings;
+        [SerializeField] private Dictionary<ScreenState, IScreenManager> _screensBindings = default;
 
         private bool _isDataLoaded;
 
@@ -52,6 +51,15 @@ namespace ARMuseum.ChooseMuseumScreen
             if (_isDataLoaded) return;
 
             LoadData();
+        }
+        
+        void OnApplicationQuit()
+        {
+            if (_dataContainer != null && _dataContainer.GlobalData != null)
+            {
+                _dataContainer.GlobalData.SelectedExhibitData = null;
+                _dataContainer.GlobalData.SelectedMuseumData = null;
+            }
         }
     }
 }

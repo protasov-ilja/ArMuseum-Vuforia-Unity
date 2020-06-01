@@ -7,9 +7,9 @@ namespace ARMuseum
 {
     public class NavigationDestination : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _hallName;
-        [SerializeField] private GameObject _destinationPointer;
-        [SerializeField] private HallDataSO _hallData;
+        [SerializeField] private TMP_Text _hallName = default;
+        [SerializeField] private GameObject _destinationPointer = default;
+        [SerializeField] private HallDataSO _hallData = default;
 
         public HallDataSO HallData => _hallData;
 

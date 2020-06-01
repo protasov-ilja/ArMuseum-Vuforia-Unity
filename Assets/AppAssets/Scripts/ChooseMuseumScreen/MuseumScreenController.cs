@@ -14,9 +14,9 @@ namespace ARMuseum.ChooseMuseumScreen
         [Inject] private GenericSceneManager _sceneManager;
         [Inject] private GlobalDataContainer _dataContainer;
         
-        [SerializeField] private Transform _contentTransform;
-        [SerializeField] private MuseumsDataSO _museumsData;
-        [SerializeField] private MuseumCard _cardPrefab;
+        [SerializeField] private Transform _contentTransform = default;
+        [SerializeField] private MuseumsDataSO _museumsData = default;
+        [SerializeField] private MuseumCard _cardPrefab = default;
 
         private GlobalDataSO _globalData;
         private List<MuseumCard> _cards;

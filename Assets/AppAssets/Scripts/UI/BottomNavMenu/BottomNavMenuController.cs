@@ -13,7 +13,7 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
     {
         [Inject] private GlobalDataContainer _dataContainer;
         
-        [SerializeField] private List<NavButton> _menuButtons;
+        [SerializeField] private List<NavButton> _menuButtons = default;
 
         private ScreenStateManager _screenManager;
 

@@ -12,8 +12,8 @@ namespace ARMuseum.Scriptables
             _id = Guid.NewGuid().ToString();
         }
         
-        [SerializeField] private string _id;
-        [SerializeField] private string _cityName;
+        [SerializeField] private string _id = default;
+        [SerializeField] private string _cityName = default;
 
         public string CityName => _cityName;
     }

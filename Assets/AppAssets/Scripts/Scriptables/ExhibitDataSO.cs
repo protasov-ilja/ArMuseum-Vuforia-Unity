@@ -15,13 +15,13 @@ namespace ARMuseum.Scriptables
             _id = Guid.NewGuid().ToString();
         }
         
-        [SerializeField] private string _id;
-        [SerializeField] private string _exhibitName;
-        [SerializeField] private Sprite[] _images;
-        [SerializeField] private string _description;
-        [SerializeField] private HallDataSO _hall;
-        [SerializeField] private AudioClip _audioGuid;
-        [SerializeField] private TrackableExhibitEventHandler _worldTargetPrefab;
+        [SerializeField] private string _id = default;
+        [SerializeField] private string _exhibitName = default;
+        [SerializeField] private Sprite[] _images = default;
+        [SerializeField] private string _description = default;
+        [SerializeField] private HallDataSO _hall = default;
+        [SerializeField] private AudioClip _audioGuid = default;
+        [SerializeField] private TrackableExhibitEventHandler _worldTargetPrefab = default;
 
         public bool Has3dModel => _worldTargetPrefab.Has3DModel;
 

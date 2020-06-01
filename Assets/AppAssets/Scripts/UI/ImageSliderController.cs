@@ -11,9 +11,9 @@ namespace AppAssets.Scripts.UI
     {
         [Inject] private GlobalDataContainer _dataContainer; 
         
-        [SerializeField] private Transform _contentTransform;
+        [SerializeField] private Transform _contentTransform = default;
 
-        [SerializeField] private Image _imageCardPrefab;
+        [SerializeField] private Image _imageCardPrefab = default;
 
         private ExhibitDataSO _exhibitData;
 
