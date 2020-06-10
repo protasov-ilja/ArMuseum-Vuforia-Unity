@@ -39,7 +39,7 @@ namespace ARMuseum.SearchScreen
             _exhibitData = exhibitData;
             _exhibitNameText.text = exhibitData.ExhibitName;
             _hallNameText.text = exhibitData.Hall.HallName;
-            _shortDescription.text = exhibitData.Description;
+            _shortDescription.text = exhibitData.ShortDescription;
             _exhibitImage.sprite = exhibitData.Images[0];
             OnExhibitChosen += _controller.ChooseExhibit;
         }

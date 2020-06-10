@@ -13,12 +13,15 @@ MonoBehaviour:
   m_Name: ExhibitData_2
   m_EditorClassIdentifier: 
   _id: 1635d63b-e244-45fe-907d-e99f653be553
-  _exhibitName: "\u042F\u0449\u0438\u043A"
+  _exhibitName: "\u041A\u0430\u0440\u0442\u0438\u043D\u043A\u04302"
   _images:
   - {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
   - {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}
   - {fileID: 21300000, guid: 9fa5c015fdc4ebc45824f64713254e60, type: 3}
-  _description: "\u0414\u0430 \u0437\u0430\u0447\u0435\u043C \u0432\u0430\u043C \u043E\u043D\u043E)"
+  _shortDescription: "\u0442\u0435\u0441\u0442\u043E\u0432\u0430\u044F \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0430
+    2"
+  _description: "\u0442\u0435\u0441\u0442\u043E\u0432\u0430\u044F \u043A\u0430\u0440\u0442\u0438\u043D\u043A\u0430
+    2"
   _hall: {fileID: 11400000, guid: 10631c07e07cbe74d9e20a643cd46f30, type: 2}
   _audioGuid: {fileID: 0}
-  _worldTargetPrefab: {fileID: 0}
+  _has3DModel: 0

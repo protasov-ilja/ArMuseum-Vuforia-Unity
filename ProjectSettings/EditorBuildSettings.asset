@@ -14,9 +14,6 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/ARNavigationScene.unity
     guid: 839500a7b71b4bd4a8b6aca14c911cb3
-  - enabled: 0
-    path: Assets/Scenes/ExhibitSearchScene.unity
-    guid: a407bebd7a702da4bb31995585d9b0cb
   m_configObjects:
     com.unity.xr.arcore.PlayerSettings: {fileID: 11400000, guid: 7a86766ceaaff9a439b7d30b865ac9aa,
       type: 2}

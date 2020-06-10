@@ -68,7 +68,8 @@ namespace AppAssets.Scripts.ARNavigation
             {
                 // The initial forward vector of the sphere must be aligned with the initial camera direction in the XZ plane.
                 // We apply translation only in the XZ plane.
-                _userObject.transform.position = new Vector3(_userObject.transform.position.x + deltaPosition.x, _userObject.transform.position.y, _userObject.transform.position.z + deltaPosition.z);/*(deltaPosition.x, 0.0f, deltaPosition.z);*/
+                _userObject.transform.position = new Vector3(_userObject.transform.position.x + deltaPosition.x,
+                    _userObject.transform.position.y, _userObject.transform.position.z + deltaPosition.z);/*(deltaPosition.x, 0.0f, deltaPosition.z);*/
 
                 // Set the pose rotation to be used in the CameraFollow script
                 //Debug.Log($"Camera Direction { Frame.Pose.rotation.eulerAngles }");
