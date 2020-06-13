@@ -20,8 +20,6 @@ MonoBehaviour:
   _navigationMapData: {fileID: 9175897015069609583, guid: 980c452ccb4a49e47b672e6fe99291ab,
     type: 3}
   _exhibits:
-  - {fileID: 11400000, guid: 4bb9346824b45ae4db3bcc85282a92a7, type: 2}
-  - {fileID: 11400000, guid: 01563bb2fa37a66438d3ad06c53b24b7, type: 2}
   - {fileID: 11400000, guid: a297be80e998fa34596baa16d65e93f5, type: 2}
   - {fileID: 11400000, guid: 91e4f04058ab10c488200baa831922d7, type: 2}
   - {fileID: 11400000, guid: 96ea758ac280c834a9b0b501e707a7c0, type: 2}

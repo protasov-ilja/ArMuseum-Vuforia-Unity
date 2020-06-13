@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: fab42357752642c3a1a3fa61f5101db3, type: 3}
-  m_Name: ExhibitData_4
+  m_Name: ExhibitData_IS-3
   m_EditorClassIdentifier: 
   _id: 7e3d94ab-f26f-4558-ae2c-8a1cde06c696
   _exhibitName: "\u0418\u0421-3"

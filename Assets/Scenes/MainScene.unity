@@ -5879,7 +5879,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2634363101228328699}
   m_TextComponent: {fileID: 7582040581657381622}
   m_materialReferenceIndex: 1
@@ -6009,7 +6009,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2761255950846281188}
   m_TextComponent: {fileID: 7774903305518770665}
   m_materialReferenceIndex: 1
@@ -6037,7 +6037,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2761255951043700319}
   m_TextComponent: {fileID: 7774903305438759506}
   m_materialReferenceIndex: 1
@@ -6525,11 +6525,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedeb9ef7c614f37b161c31e7410e4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonIcon: {fileID: 0}
-  _buttonText: {fileID: 0}
-  _buttonBackground: {fileID: 8635907655958453530}
-  _activeColor: {r: 0.23921569, g: 0.20392157, b: 0.19215687, a: 1}
-  _inactiveColor: {r: 0.34117648, g: 0.3372549, b: 0.3372549, a: 1}
+  _buttonIcon: {fileID: 900294328351705708}
+  _buttonText: {fileID: 7582040581657381622}
   _button: {fileID: 3586134878600674546}
   _screenState: 3
 --- !u!114 &5879183904402838206
@@ -6556,7 +6553,7 @@ MonoBehaviour:
   m_material: {fileID: 0}
   m_sharedMaterial: {fileID: 0}
   m_isDefaultMaterial: 0
-  m_padding: 1.25
+  m_padding: 0
   m_canvasRenderer: {fileID: 2494856609650034833}
   m_TextComponent: {fileID: 7774903305438759506}
   m_materialReferenceIndex: 2
@@ -6572,11 +6569,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedeb9ef7c614f37b161c31e7410e4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonIcon: {fileID: 0}
-  _buttonText: {fileID: 0}
-  _buttonBackground: {fileID: 8432489621744975365}
-  _activeColor: {r: 0, g: 0, b: 0, a: 0}
-  _inactiveColor: {r: 0, g: 0, b: 0, a: 0}
+  _buttonIcon: {fileID: 1054031479749732723}
+  _buttonText: {fileID: 7774903305518770665}
   _button: {fileID: 3682346132465098733}
   _screenState: 2
 --- !u!114 &5912206241444534672
@@ -6591,11 +6585,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dedeb9ef7c614f37b161c31e7410e4a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _buttonIcon: {fileID: 0}
-  _buttonText: {fileID: 0}
-  _buttonBackground: {fileID: 8432489621664964030}
-  _activeColor: {r: 0, g: 0, b: 0, a: 0}
-  _inactiveColor: {r: 0, g: 0, b: 0, a: 0}
+  _buttonIcon: {fileID: 1054031479661333192}
+  _buttonText: {fileID: 7774903305438759506}
   _button: {fileID: 3682346132343192662}
   _screenState: 0
 --- !u!1 &5912206242716440896
@@ -6699,6 +6690,9 @@ MonoBehaviour:
   - {fileID: 5823911472503118140}
   - {fileID: 5912206241444534672}
   - {fileID: 5912206241373026875}
+  _defaultActiveState: 3
+  _activeColor: {r: 0.2392157, g: 0.20392159, b: 0.19215688, a: 1}
+  _inactiveColor: {r: 0.5254902, g: 0.52156866, b: 0.52156866, a: 1}
 --- !u!1001 &5950765238134306754
 PrefabInstance:
   m_ObjectHideFlags: 0

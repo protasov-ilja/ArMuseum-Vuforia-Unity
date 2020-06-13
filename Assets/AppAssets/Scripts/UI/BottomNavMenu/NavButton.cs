@@ -10,15 +10,14 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
     {
         [SerializeField] private Image _buttonIcon = default;
         [SerializeField] private TMP_Text _buttonText = default;
-        [SerializeField] private Image _buttonBackground = default;
 
-        [SerializeField] private Color _activeColor = default;
-        [SerializeField] private Color _inactiveColor = default;
         [SerializeField] private Button _button = default;
         [SerializeField] private ScreenState _screenState = default;
 
         private Action<ScreenState> OnScreenSelected;
-        
+        private Color _activeColor;
+        private Color _inactiveColor;
+
         public bool IsActive { get; private set; }
         public ScreenState ScreenState => _screenState;
 
@@ -27,8 +26,10 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
             _button.onClick.AddListener(OnButtonClicked);
         }
         
-        public void Initialize(BottomNavMenuController controller)
+        public void Initialize(BottomNavMenuController controller, Color activeColor, Color inactiveColor)
         {
+            _activeColor = activeColor;
+            _inactiveColor = inactiveColor;
             OnScreenSelected += controller.OnButtonClicked;
         }
 
@@ -37,7 +38,8 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
             if (IsActive) return;
             
             IsActive = true;
-            _buttonBackground.color = Color.green;
+            _buttonIcon.color = _activeColor;
+            _buttonText.color = _activeColor;
             
             OnScreenSelected?.Invoke(_screenState);
         }
@@ -46,7 +48,16 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
         {
             if (isActive == IsActive) return;
 
-            _buttonBackground.color = isActive ? Color.green : Color.gray;
+            _buttonIcon.color = isActive ? _activeColor : _inactiveColor;
+            _buttonText.color = isActive ? _activeColor : _inactiveColor;
+
+            IsActive = isActive;
+        }
+
+        public void ActiveForce( bool isActive )
+        {
+            _buttonIcon.color = isActive ? _activeColor : _inactiveColor;
+            _buttonText.color = isActive ? _activeColor : _inactiveColor;
 
             IsActive = isActive;
         }

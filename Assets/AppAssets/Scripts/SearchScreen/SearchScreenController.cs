@@ -1,11 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using AppAssets.Scripts.UI;
 using AppAssets.Scripts.UI.Enums;
 using ARMuseum.ChooseMuseumScreen;
 using ARMuseum.Scriptables;
-using FuzzySharp;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -31,7 +29,9 @@ namespace ARMuseum.SearchScreen
         private List<string> _exhibitsNames = new List<string>();
 
         private List<ExhibitCard> _activeCards = new List<ExhibitCard>();
-        
+
+        private readonly SearchSystem _searchSystem = new SearchSystem();
+
         private void Start()
         {
             _confirmInputButton.onClick.AddListener(Search);
@@ -117,13 +117,11 @@ namespace ARMuseum.SearchScreen
             DisableActiveCards();
 
             string searchString = _inputField.text;
-            searchString = searchString.ToLower();
-            var result = Process.ExtractTop(searchString, _exhibitsNames).ToList();
+            var result = _searchSystem.Search( searchString, _exhibitsNames );
+
             foreach (var foundString in result)
-            {
-                if (foundString.Score <= 0) continue;
-                
-                var exhibitCard = _cards.First(c => c.ExhibitName.ToLower() == foundString.Value);
+            { 
+                var exhibitCard = _cards.First(c => c.ExhibitName.ToLower() == foundString);
                 exhibitCard.gameObject.SetActive(true);
                 _activeCards.Add(exhibitCard);
             }

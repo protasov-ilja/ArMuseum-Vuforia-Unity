@@ -14,6 +14,9 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
         [Inject] private GlobalDataContainer _dataContainer;
         
         [SerializeField] private List<NavButton> _menuButtons = default;
+        [SerializeField] private ScreenState _defaultActiveState = default;
+        [SerializeField] private Color _activeColor = default;
+        [SerializeField] private Color _inactiveColor = default;
 
         private ScreenStateManager _screenManager;
 
@@ -22,7 +25,15 @@ namespace AppAssets.Scripts.UI.BottomNavMenu
             _screenManager = _dataContainer.ScreenManager;
             foreach (var navButton in _menuButtons)
             {
-                navButton.Initialize(this);
+                navButton.Initialize(this, _activeColor, _inactiveColor );
+                if (navButton.ScreenState == _defaultActiveState )
+                {
+                    navButton.ActiveForce( true );
+                }
+                else
+                {
+                    navButton.ActiveForce( false );
+                }
             }
         }
 
