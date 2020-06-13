@@ -16,6 +16,9 @@ namespace ARMuseum
 {
     public class ARNavigationSystem : MonoBehaviour
     {
+        [Header( "DEBUG" )]
+        [SerializeField] private TMP_Text _arrowCreatedText;
+
         [Inject] private GlobalDataContainer _dataContainer;
         
         [Header("AppComponents")]

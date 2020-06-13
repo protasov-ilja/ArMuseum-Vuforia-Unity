@@ -26,6 +26,9 @@ namespace AppAssets.Scripts.ARNavigation
         [SerializeField] private GameObject _focusTargetIcon = default;
         [SerializeField] private TMP_Text _destinationNameText = default;
         [SerializeField] private GameObject _destinationInfoPanel = default;
+        [SerializeField] private Button _helpButton = default;
+
+        [SerializeField] private GameObject _helpScreen = default;
 
         [SerializeField] private ARNavigationSystem _arNavigationSystem = default;
         
@@ -37,17 +40,21 @@ namespace AppAssets.Scripts.ARNavigation
         private bool _isDestinationSet;
         
         public bool IsActivated { get; private set; }
-        
+
+
+        private void Start()
+        {
+            _helpButton.onClick.AddListener( () => _helpScreen.gameObject.SetActive( true ) );
+            _backToMuseumButton.onClick.AddListener( BackToMuseum );
+            _mapButton.onClick.AddListener( OpenMapScreen );
+            _backToNavigationButton.onClick.AddListener( () => _mapScreen.gameObject.SetActive( false ) );
+            _confirmNavigationButton.onClick.AddListener( ConfirmNavigation );
+        }
+
         private void CustomStart()
         {
             _globalData = _dataContainer.GlobalData;
             _screenManager = _dataContainer.ScreenManager;
-            
-            _backToMuseumButton.onClick.AddListener(BackToMuseum);
-            _mapButton.onClick.AddListener(OpenMapScreen);
-            _backToNavigationButton.onClick.AddListener(() => _mapScreen.gameObject.SetActive(false));
-            _confirmNavigationButton.onClick.AddListener(ConfirmNavigation);
-            
             _arNavigationSystem.SetPositioningSystemSubscriber(this);
             _arNavigationSystem.OnDestinationSet += DestinationSet;
             
@@ -62,6 +69,7 @@ namespace AppAssets.Scripts.ARNavigation
             _mapButton.onClick.RemoveListener(OpenMapScreen);
             _backToNavigationButton.onClick.RemoveAllListeners();
             _confirmNavigationButton.onClick.RemoveListener(ConfirmNavigation);
+            _helpButton.onClick.RemoveAllListeners();
         }
 
         private void BackToMuseum()
@@ -74,6 +82,7 @@ namespace AppAssets.Scripts.ARNavigation
         private void Initialize()
         {
             _focusTargetIcon.gameObject.SetActive(true);
+            _helpButton.gameObject.SetActive( true );
             _destinationInfoPanel.SetActive(false);
             _mapButton.gameObject.SetActive(false);
         }
@@ -87,12 +96,14 @@ namespace AppAssets.Scripts.ARNavigation
                 _arNavigationSystem.SetDestinationManually(hall.HallName);
                 _mapScreen.gameObject.SetActive(true);
                 _mapButton.gameObject.SetActive(true);
+                _helpButton.gameObject.SetActive( false );
             }
         }
         
         public void OnUserRelocated()
         {
             _focusTargetIcon.SetActive(false);
+            _helpButton.gameObject.SetActive( false );
             _isUserPositioned = true;
 
             if (_isDestinationSet && _isNavigationConfirmed)

@@ -9,6 +9,8 @@ namespace AppAssets.Scripts.ARNavigation
 {
     public class UserPositioningSystem : MonoBehaviour
     {
+        [SerializeField] private TMP_Text _navigationText; // DEBUG
+
         [SerializeField] private NavigationMarkersScanner _markersScanner = default;
         
         /// <summary>
@@ -92,8 +94,9 @@ namespace AppAssets.Scripts.ARNavigation
             var relocationPoint = _relocationPoints.First(p => p.PointName == imageRelocationPointName);
             if (relocationPoint != null)
             {
-                var userRotationEuler = _userObject.transform.rotation.eulerAngles;
-                _userObject.transform.rotation = relocationPoint.transform.rotation;
+                _navigationText.text = relocationPoint.gameObject.name;
+                //var userRotationEuler = _userObject.transform.rotation.eulerAngles;
+                //_userObject.transform.rotation = relocationPoint.transform.rotation;
                 Debug.Log($"text: { imageRelocationPointName }, Location: { relocationPoint.PointName }");
                 var relocationPointPosition = relocationPoint.transform.position;
                 _userObject.transform.position = new Vector3(relocationPointPosition.x, 

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.Serialization;
 using UnityEngine.XR.ARFoundation;
 
@@ -7,6 +8,9 @@ namespace ARMuseum
     //used to update AR stuff using colliders
     public class UpdateARNavigation : MonoBehaviour
     {
+        [SerializeField] private TMP_Text _arrowDebugText;
+        private int _numberArrows = 0;
+
         public ARAnchorManager anchorManager;
         public GameObject trigger; // collider to change arrows
         public GameObject indicator; // arrow prefab to spawn
@@ -70,7 +74,7 @@ namespace ARMuseum
 
                 // create new anchor
                 _anchor = anchorManager.AddAnchor(new Pose(pos, rot));
-                
+                _arrowDebugText.text = _anchor.gameObject.name + " " + _numberArrows.ToString(); //TODO: DEBUG
                 var connectedTrigger = other.gameObject.GetComponent<NavigationTrigger>(); // move script on NavTrigger prefab before start
                 connectedTrigger.NavigationArrow = _anchor;
                 
