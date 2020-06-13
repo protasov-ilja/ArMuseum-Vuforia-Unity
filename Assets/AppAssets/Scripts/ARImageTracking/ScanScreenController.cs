@@ -16,8 +16,8 @@ namespace ARMuseum.ARImageTracking
         
         [SerializeField] private Button _helpButton;
         [SerializeField] private Button _show3dModelButton;
-        [SerializeField] private Image _show3DButtonImage;
-        [SerializeField] private Button _backButton;
+        [SerializeField] private TMP_Text _show3dModelButtonText;
+        [ SerializeField] private Button _backButton;
         [SerializeField] private Button _exhibitHistoryButton;
         [SerializeField] private ARExhibitsTrackingSystem _trackingSystem;
         [SerializeField] private GameObject _helpScreen;
@@ -67,13 +67,11 @@ namespace ARMuseum.ARImageTracking
             // change Button color
             if (!_3DModelActivated)
             {
-                _show3DButtonImage.color = Color.green;
                 _3DModelActivated = true;
                 _trackingSystem.Activate3DModel();
             }
             else
             {
-                _show3DButtonImage.color = Color.gray;
                 _3DModelActivated = false;
                 _trackingSystem.Deactivate3DModel();
             }
@@ -85,6 +83,7 @@ namespace ARMuseum.ARImageTracking
             _bottomPanel.gameObject.SetActive(true);
             _infoPanelText.text = exhibitName;
             _show3dModelButton.interactable = has3DModel;
+            _show3dModelButtonText.gameObject.SetActive( has3DModel );
         }
 
         public void OnExhibitLost()

@@ -39,12 +39,12 @@ namespace ARMuseum.ARImageTracking
 
         public void Activate3DModel()
         {
-            _3DModel.gameObject.SetActive(true);
+            if (Has3DModel) _3DModel.gameObject.SetActive(true);
         }
 
         public void Deactivate3DModel()
         {
-            _3DModel.gameObject.SetActive(false);
+            if ( Has3DModel ) _3DModel.gameObject.SetActive(false);
         }
 
         /// <summary>
