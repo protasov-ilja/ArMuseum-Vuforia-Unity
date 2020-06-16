@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <QCARConfig xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="qcar_config.xsd">
   <Tracking>
+    <ImageTarget name="suzdal_museum" size="0.100000 0.100000" />
     <ImageTarget name="pchelins-house" size="0.100000 0.066615" />
     <ImageTarget name="Bolshevik_Kustodiev" size="0.100000 0.070947" />
     <ImageTarget name="StarsNight_VanGog" size="0.100000 0.056250" />
