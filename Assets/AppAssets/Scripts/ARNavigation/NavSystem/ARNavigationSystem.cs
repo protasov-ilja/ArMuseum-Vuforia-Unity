@@ -9,16 +9,12 @@ using ARMuseum.Scriptables;
 using TMPro;
 using UnityEngine;
 using UnityEngine.AI;
-using UnityEngine.Serialization;
 using Zenject;
 
 namespace ARMuseum
 {
     public class ARNavigationSystem : MonoBehaviour
     {
-        [Header( "DEBUG" )]
-        [SerializeField] private TMP_Text _arrowCreatedText;
-
         [Inject] private GlobalDataContainer _dataContainer;
         
         [Header("AppComponents")]
@@ -37,9 +33,6 @@ namespace ARMuseum
         private NavigationDestination _navTarget; // current chosen destination
         private NavMeshPath _path; // current calculated path
         private bool _destinationSet; // bool to say if a destination is set
-
-        private GameObject _destination;
-        private GameObject _destinationAnchor;
 
         private GlobalDataSO _globalData;
         private MapManager _mapManager;
@@ -108,11 +101,14 @@ namespace ARMuseum
             }
 
             var targetTransform = _destinations.Where(d => d.gameObject.name == destinationName).ToList();
-            
-            var prevTrigger = GameObject.Find("NavTrigger(Clone)");
+
+            var prevTrigger = FindObjectsOfType<NavigationTrigger>();
             if (prevTrigger != null)
             {
-                Destroy(prevTrigger.gameObject);
+                for (var i = prevTrigger.Length - 1; i >= 0; --i )
+                {
+                    Destroy( prevTrigger[i].gameObject );
+                }
             }
             
             _navTarget = targetTransform[0];
@@ -142,13 +138,16 @@ namespace ARMuseum
             }
 
             var targetTransform = _destinations.Where(d => d.HallData.HallName == destinationName).ToList();
-            
-            var prevTrigger = GameObject.Find("NavTrigger(Clone)");
-            if (prevTrigger != null)
+
+            var prevTrigger = FindObjectsOfType<NavigationTrigger>();
+            if ( prevTrigger != null )
             {
-                Destroy(prevTrigger.gameObject);
+                for ( var i = prevTrigger.Length - 1; i >= 0; --i )
+                {
+                    Destroy( prevTrigger[ i ].gameObject );
+                }
             }
-            
+
             _navTarget = targetTransform[0];
             _navTarget.ActivateDestinationPointer(true);
             OnDestinationSet?.Invoke(_navTarget.HallData.HallName);

@@ -9,8 +9,6 @@ namespace AppAssets.Scripts.ARNavigation
 {
     public class UserPositioningSystem : MonoBehaviour
     {
-        [SerializeField] private TMP_Text _navigationText; // DEBUG
-
         [SerializeField] private NavigationMarkersScanner _markersScanner = default;
         
         /// <summary>
@@ -29,6 +27,9 @@ namespace AppAssets.Scripts.ARNavigation
 
         private bool _isRecognized;
         private List<UserRelocationPoint> _relocationPoints = new List<UserRelocationPoint>();
+
+        private float _timeoutTime = 5f;
+        private float _timeoutTimer = 5f;
 
         public event Action OnUserRelocated;
 
@@ -53,14 +54,19 @@ namespace AppAssets.Scripts.ARNavigation
 
         public void Update()
         {
+            if ( _timeoutTime < 0)
+            {
+                _timeoutTime -= Time.deltaTime;
+            }
+
             if (!_isRecognized) return;
             
             // Move the person indicator according to position
-            Vector3 currentUserPosition = _poseDriver.transform.localPosition; // changed to local pos!!!
+            Vector3 currentUserPosition = _poseDriver.transform.position; // changed to local pos!!!
             if (_isStartTracking)
             {
                 _isStartTracking = false;
-                _prevUserPosition = _poseDriver.transform.localPosition; // changed to local pos!!!
+                _prevUserPosition = _poseDriver.transform.position; // changed to local pos!!!
             }
             
             // Remember the previous position so we can apply deltas
@@ -83,10 +89,17 @@ namespace AppAssets.Scripts.ARNavigation
         {
             _relocationPoints = relocationPoints;
         }
-        
+
+        public void ResetTimer()
+        {
+            _timeoutTime = 0;
+        }
+
         // move to person indicator to the new spot where placed marker
         private void RelocateUser(string imageRelocationPointName)
         {
+            if ( IsTimeout() ) return;
+
             Debug.Log("Relocate!");
             // find the correct location scanned and move the person to its position
 
@@ -94,7 +107,6 @@ namespace AppAssets.Scripts.ARNavigation
             var relocationPoint = _relocationPoints.First(p => p.PointName == imageRelocationPointName);
             if (relocationPoint != null)
             {
-                _navigationText.text = relocationPoint.gameObject.name;
                 //var userRotationEuler = _userObject.transform.rotation.eulerAngles;
                 //_userObject.transform.rotation = relocationPoint.transform.rotation;
                 Debug.Log($"text: { imageRelocationPointName }, Location: { relocationPoint.PointName }");
@@ -104,6 +116,17 @@ namespace AppAssets.Scripts.ARNavigation
                 
                 OnUserRelocated?.Invoke();
             }
+        }
+
+        private bool IsTimeout()
+        {
+            if ( _timeoutTime > 0 )
+            {
+                return true;
+            }
+
+            _timeoutTime = _timeoutTimer;
+            return false;
         }
     }
 }
