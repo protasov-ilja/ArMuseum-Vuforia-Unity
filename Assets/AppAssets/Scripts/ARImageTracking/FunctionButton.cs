@@ -9,6 +9,7 @@ public class FunctionButton : MonoBehaviour
     [SerializeField] private Color _activeColor;
     [SerializeField] private Color _unactiveColor;
     [SerializeField] private TMP_Text _buttonText;
+    [SerializeField] private Image _buttonIcon;
 
     public bool IsActive { get; private set; }
 
@@ -27,6 +28,8 @@ public class FunctionButton : MonoBehaviour
     public void ActivateButton()
     {
         IsActive = !IsActive;
-        _buttonText.color = IsActive ? _activeColor : _unactiveColor;
+        var seletedColor = IsActive ? _activeColor : _unactiveColor;
+        _buttonText.color = seletedColor;
+        _buttonIcon.color = seletedColor;
     }
 }

@@ -98,9 +98,14 @@ namespace ARMuseum.SearchScreen
         {
             foreach (var card in _cards)
             {
-                if (_activeCards.Contains(card)) continue;
+                if ( _activeCards.Contains( card ) )
+                {
+                    card.ResetName();
+                    continue;
+                }
                 
                 card.gameObject.SetActive(true);
+                card.ResetName();
                 _activeCards.Add(card);
             }
         }
@@ -121,9 +126,13 @@ namespace ARMuseum.SearchScreen
 
             foreach (var foundString in result)
             { 
-                var exhibitCard = _cards.First(c => c.ExhibitName.ToLower() == foundString);
+                var exhibitCard = _cards.First(c => c.ExhibitName.ToLower() == foundString.ResultStr);
                 exhibitCard.gameObject.SetActive(true);
                 _activeCards.Add(exhibitCard);
+
+                var d = exhibitCard.ExhibitName.Insert( foundString.StrIndex + searchString.Length, "</b>" );
+                d = d.Insert( foundString.StrIndex, "<b>" );
+                exhibitCard.UpdateName( d );
             }
         }
 

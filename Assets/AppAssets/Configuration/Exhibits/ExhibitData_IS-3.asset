@@ -73,5 +73,5 @@ MonoBehaviour:
     \u043F\u043E\u043B\u043A\u043E\u0432 \u0421\u043E\u0432\u0435\u0442\u0441\u043A\u043E\u0439
     \u0410\u0440\u043C\u0438\u0438."
   _hall: {fileID: 11400000, guid: cd082f8bb5a9869478cc626452505aed, type: 2}
-  _audioGuid: {fileID: 0}
+  _audioGuid: {fileID: 8300000, guid: b692221ac15af5b459d8b3495cc604dc, type: 3}
   _has3DModel: 0

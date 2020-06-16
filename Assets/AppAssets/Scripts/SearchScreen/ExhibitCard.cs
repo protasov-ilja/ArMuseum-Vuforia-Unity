@@ -33,6 +33,16 @@ namespace ARMuseum.SearchScreen
             OnExhibitChosen -= _controller.ChooseExhibit;
         }
 
+        public void ResetName()
+        {
+            _exhibitNameText.text = _exhibitData.ExhibitName;
+        }
+
+        public void UpdateName(string exhibitName)
+        {
+            _exhibitNameText.text = exhibitName;
+        }
+
         public void Initialize(ExhibitDataSO exhibitData, SearchScreenController controller)
         {
             _controller = controller;

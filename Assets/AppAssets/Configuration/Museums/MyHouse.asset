@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: MyHouse
   m_EditorClassIdentifier: 
   _id: 74818140-3275-4fc5-b72c-12d7d3a2edad
-  _museumName: "\u041A\u0432\u0430\u0440\u0442\u0438\u0440\u0430"
+  _museumName: "\u041C\u0443\u0437\u0435\u0439 1"
   _description: "\u041A\u0432\u0430\u0440\u0442\u0438\u0440\u0430 \u041A\u0432\u0430\u0440\u0442\u0438\u0440\u0430"
   _city: {fileID: 11400000, guid: 087d9bd3f8753404b875396bfcadf035, type: 2}
   _image: {fileID: 21300000, guid: d763f073019cfe849a5936ad49fccf0b, type: 3}

@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: HallData_LivingRoom
   m_EditorClassIdentifier: 
   _id: d8437109-b112-45f5-84e4-be25a1542fd8
-  _hallName: "\u0417\u0430\u043B"
+  _hallName: "\u0417\u0430\u043B 4"
   _description: "\u0417\u0430\u043B \u0441\u0430\u043C\u0430\u044F \u0431\u043E\u043B\u044C\u0448\u0430\u044F
     \u043A\u043E\u043C\u043D\u0430\u0442\u0430"
