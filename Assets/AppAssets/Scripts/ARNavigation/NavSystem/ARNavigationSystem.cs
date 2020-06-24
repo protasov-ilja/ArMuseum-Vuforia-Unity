@@ -166,11 +166,13 @@ namespace ARMuseum
 
         public void ConfirmDestination()
         {
+           
             var obj = Instantiate(_triggerPrefab, _userTarget.transform.position, _userTarget.transform.rotation);
             Debug.Log($"NavigationControllerFound! { _navTarget.name } position: { obj.transform.position }");
             
             _triggersCollector.AddTrigger(obj);
-            
+
+            _positioningSystem.StartPositioning();
             _destinationSet = true;
         }
     }

@@ -9,6 +9,8 @@ namespace AppAssets.Scripts.ARNavigation
 {
     public class UserPositioningSystem : MonoBehaviour
     {
+        [SerializeField] private TMP_Text _textDebug;
+
         [SerializeField] private NavigationMarkersScanner _markersScanner = default;
         
         /// <summary>
@@ -33,6 +35,9 @@ namespace AppAssets.Scripts.ARNavigation
 
         public event Action OnUserRelocated;
 
+        public bool Room1;
+        private bool NextRun;
+
         public void Awake()
         {
             // Enable ARCore to target 60fps camera capture frame rate on supported devices.
@@ -42,6 +47,8 @@ namespace AppAssets.Scripts.ARNavigation
 
         private void Start()
         {
+            _textDebug.text = _timeoutTimer.ToString();
+            _timeoutTime = 0;
             //set initial position
             _prevUserPosition = Vector3.zero;
             _markersScanner.OnImageRecognized += RelocateUser;
@@ -54,12 +61,27 @@ namespace AppAssets.Scripts.ARNavigation
 
         public void Update()
         {
+            if (Room1)
+            {
+                RelocateUser( "Room1");
+            }
+
             if ( _timeoutTime < 0)
             {
                 _timeoutTime -= Time.deltaTime;
             }
 
-            if (!_isRecognized) return;
+            if ( !_isRecognized )
+            {
+                return;
+            }
+
+            if (!NextRun)
+            {
+                _prevUserPosition = _poseDriver.transform.position;
+                NextRun = true;
+                return;
+            }
             
             // Move the person indicator according to position
             Vector3 currentUserPosition = _poseDriver.transform.position; // changed to local pos!!!
@@ -68,10 +90,12 @@ namespace AppAssets.Scripts.ARNavigation
                 _isStartTracking = false;
                 _prevUserPosition = _poseDriver.transform.position; // changed to local pos!!!
             }
-            
+
             // Remember the previous position so we can apply deltas
+            
             Vector3 deltaPosition = currentUserPosition - _prevUserPosition;
-            _text.text = $"{currentUserPosition.ToString()} \n delta{deltaPosition.ToString()}"; 
+            _textDebug.text = currentUserPosition + " : " + _prevUserPosition + " : " + deltaPosition;
+            _prevUserPosition = _poseDriver.transform.position;
             if (_userObject != null)
             {
                 // The initial forward vector of the sphere must be aligned with the initial camera direction in the XZ plane.
@@ -99,23 +123,27 @@ namespace AppAssets.Scripts.ARNavigation
         private void RelocateUser(string imageRelocationPointName)
         {
             if ( IsTimeout() ) return;
-
+            _textDebug.text = _timeoutTimer.ToString() + "Relocate!";
             Debug.Log("Relocate!");
             // find the correct location scanned and move the person to its position
 
-            _isRecognized = true;
+            
             var relocationPoint = _relocationPoints.First(p => p.PointName == imageRelocationPointName);
             if (relocationPoint != null)
             {
                 //var userRotationEuler = _userObject.transform.rotation.eulerAngles;
                 //_userObject.transform.rotation = relocationPoint.transform.rotation;
-                Debug.Log($"text: { imageRelocationPointName }, Location: { relocationPoint.PointName }");
                 var relocationPointPosition = relocationPoint.transform.position;
                 _userObject.transform.position = new Vector3(relocationPointPosition.x, 
                     _userObject.transform.position.y, relocationPointPosition.z);
                 
                 OnUserRelocated?.Invoke();
             }
+        }
+
+        public void StartPositioning()
+        {
+            _isRecognized = true;
         }
 
         private bool IsTimeout()

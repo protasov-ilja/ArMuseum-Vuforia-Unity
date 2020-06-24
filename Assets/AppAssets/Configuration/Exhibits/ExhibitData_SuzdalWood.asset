@@ -50,6 +50,6 @@ MonoBehaviour:
     \u043A \u0441\u0442\u0435\u043D\u0435 \u043F\u0440\u0438\u0441\u0442\u0440\u043E\u0439\u043A\u0438,
     \u0432\u0435\u0434\u0435\u0442 \u043F\u0440\u043E\u0441\u0442\u043E\u0435 \u0438\u0437\u044F\u0449\u043D\u043E\u0435
     \u043A\u0440\u044B\u043B\u044C\u0446\u043E."
-  _hall: {fileID: 0}
-  _audioGuid: {fileID: 0}
+  _hall: {fileID: 11400000, guid: 10631c07e07cbe74d9e20a643cd46f30, type: 2}
+  _audioGuid: {fileID: 8300000, guid: bfd9c66467d40ce4da55dbf5da04a1b2, type: 3}
   _has3DModel: 1

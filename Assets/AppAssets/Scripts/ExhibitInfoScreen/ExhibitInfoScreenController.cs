@@ -70,7 +70,7 @@ namespace ARMuseum.ExhibitInfoScreen
             _exhibitData = _dataContainer.GlobalData.SelectedExhibitData;
             _screenManager = _dataContainer.ScreenManager;
             
-            _createPathButton.onClick.AddListener(() => _screenManager.SetScreenState(ScreenState.Navigation));
+            _createPathButton.onClick.AddListener( ToNavigation );
 
             _exhibitName.text = _exhibitData.ExhibitName;
             _exhibitHallName.text = _exhibitData.Hall.HallName;
@@ -78,6 +78,11 @@ namespace ARMuseum.ExhibitInfoScreen
             _audio.clip = _exhibitData.AudioGuid;
 
             _imageSlider.Initialize();
+        }
+
+        private void ToNavigation()
+        {
+            _screenManager.SetScreenState( ScreenState.Navigation );
         }
 
         private void PlayAudioGuid()

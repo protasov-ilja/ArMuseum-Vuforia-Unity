@@ -22,5 +22,5 @@ MonoBehaviour:
   _exhibits:
   - {fileID: 11400000, guid: a297be80e998fa34596baa16d65e93f5, type: 2}
   - {fileID: 11400000, guid: 91e4f04058ab10c488200baa831922d7, type: 2}
-  - {fileID: 11400000, guid: 96ea758ac280c834a9b0b501e707a7c0, type: 2}
   - {fileID: 11400000, guid: 80da4c03cb5d3a64d82dc77d757b044a, type: 2}
+  - {fileID: 11400000, guid: f7547b21867825540bafde60f9f1ce16, type: 2}

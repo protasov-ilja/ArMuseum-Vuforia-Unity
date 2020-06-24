@@ -24,42 +24,51 @@ namespace ARMuseum.ARImageTracking
         [SerializeField] private TMP_Text _infoPanelText;
         [SerializeField] private GameObject _bottomPanel;
         [SerializeField] private GameObject _scanFocusIcon;
-        
+        [SerializeField] private GameObject _blockButtonPanel;
+
+
         public bool IsActivated { get; private set; }
 
         private bool _3DModelActivated = false;
 
         private bool _has3DModel;
+        private ScreenStateManager _screenManger;
 
         private void CustomStart()
         {
-            var screenManger = _dataContainer.ScreenManager;
-            
-            _helpButton.onClick.AddListener(() => _helpScreen.gameObject.SetActive(true));
-            _show3dModelButton.onClick.AddListener(Show3DModelClicked);
-            _backButton.onClick.AddListener(() => screenManger.SetScreenState(ScreenState.ExhibitType));
-            _exhibitHistoryButton.onClick.AddListener(() => screenManger.SetScreenState(ScreenState.ExhibitInfo));
+            _screenManger = _dataContainer.ScreenManager;
             DisableExhibitButtons();
         }
 
         private void Start()
         {
+            _helpButton.onClick.AddListener( () => _helpScreen.gameObject.SetActive( true ) );
+            _show3dModelButton.onClick.AddListener( Show3DModelClicked );
+            _backButton.onClick.AddListener( SetScreen );
+            _exhibitHistoryButton.onClick.AddListener( SetScreenInfo );
             _trackingSystem.OnExhibitLost += OnExhibitLost;
             _trackingSystem.OnExhibitRecognized += OnExhibitRecognized;
         }
 
-        private void OnDestroy()
+        private void SetScreen()
         {
-            _trackingSystem.OnExhibitLost -= OnExhibitLost;
-            _trackingSystem.OnExhibitRecognized -= OnExhibitRecognized;
+            _screenManger.SetScreenState( ScreenState.ExhibitType );
         }
 
-        private void OnDisable()
+        private void SetScreenInfo()
+        {
+            _screenManger.SetScreenState( ScreenState.ExhibitInfo );
+        }
+
+        private void OnDestroy()
         {
             _helpButton.onClick.RemoveAllListeners();
             _show3dModelButton.onClick.RemoveAllListeners();
             _backButton.onClick.RemoveAllListeners();
             _exhibitHistoryButton.onClick.RemoveAllListeners();
+
+            _trackingSystem.OnExhibitLost -= OnExhibitLost;
+            _trackingSystem.OnExhibitRecognized -= OnExhibitRecognized;
         }
 
         private void Show3DModelClicked()
@@ -83,7 +92,7 @@ namespace ARMuseum.ARImageTracking
             _bottomPanel.gameObject.SetActive(true);
             _infoPanelText.text = exhibitName;
             _show3dModelButton.interactable = has3DModel;
-            _show3dModelButtonText.gameObject.SetActive( has3DModel );
+            _blockButtonPanel.SetActive( !has3DModel );
         }
 
         public void OnExhibitLost()
